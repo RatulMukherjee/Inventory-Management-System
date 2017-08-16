@@ -4,10 +4,10 @@ class BaseDao{
 
   final public function getConnection(){
     if(!isset($this->conn)){
-      if(!file_exists("config.ini"))
+      if(!file_exists("../dao/config.ini"))
         die("No Configuration file");
 
-      $config=parse_ini_file("config.ini");
+      $config=parse_ini_file("../dao/config.ini");
 
         $hostname=$config["hostname"];
         $username=$config["username"];

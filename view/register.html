@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>IMS</title>
+  
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  
+  
+  
+</head>
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <nav class="primary-color" role="navigation" style="background-color: #969696">
+        <div class="nav-wrapper navcontainer">
+            <a id="logo-container" href="register.html" class="brand-logo tertiary-color text-lighten-2"><span class="blue-text text-darken-1"><font size="6">I</font>MS</span></a>
+        </div>
+    </nav>
+	</div>  
+    </header>
+	<main>
+	<div class="container">
+	<div class="row center" style="margin-right: -9px;">
+	<div class=" col s12 m4 l4 offset-m4 offset-l4">
+	<div class="card z-depth-4" style="border-radius: 10px;">
+	<h4 style="color:#4062a1;">Register</h4>
+	<hr>
+	<div class="card-content">
+    <form id="registerform" action="../app/api/register_api.php" method="POST">    
+	<div class="row">
+	<div class="input-field col s12">
+          <input id="uname" name="uname" type="text" required>
+          <label for="uname">Name</label>
+          
+    </div>
+    <div class="input-field col s12">
+          <input type="email" id="email" name="email" required>
+          <label for="email">Email</label>
+          
+    </div>       
+	<div class="input-field col s12">
+          <input id="password" type="password" name="password" ng-model="password" required>
+          <label for="last_name">Password</label>
+	</div>
+        </div>
+	 <input class="waves-effect secondary-color  waves-light btn center z-depth-3"  type="submit" name="register" value="Register" id="register">
+     </form>
+    
+	</div>
+	</div>
+	</div>
+    <div class=" col s12 m4 l4 offset-m4 offset-l4">
+        <p id="errmsg"></p>
+    </div>    
+	</div>
+	</div>
+	</main>
+ 
+  <!--  Scripts-->
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script src="js/register.js"></script>
+
+  
+  </body>
+</html>
