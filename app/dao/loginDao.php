@@ -57,16 +57,8 @@
                 echo "{\"error\":\"False\",\"message\":\"Incorrect Email\"}";
                 
             }
-                
-            
-        
-            
-            
-           
-            
-        
+            $stmt->close();
         }
-        
         
     }
 
