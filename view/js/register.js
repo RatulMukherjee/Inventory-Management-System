@@ -71,7 +71,7 @@ $(document).ready(function(){
                     if (string.error =="False" && string.message =="Success" )
                       {
                         $("#registerform").trigger('reset');   
-                        alert("You have registered"); 
+                        window.location="login.html";
                          
                           
                       }

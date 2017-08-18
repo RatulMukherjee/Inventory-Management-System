@@ -22,6 +22,24 @@ class AdminBL
         return $this->addao->searchProducts($brands,$products,$price);
         
     }
+    public function showBrands(){
+        
+        return $this->addao->showBrands();
+        
+        
+    }
+    public function showProducts($brand){
+        
+        return $this->addao->showProducts($brand);
+        
+        
+    }
+    public function addProducts($data){
+        
+        return $this->addao->addProducts($data);
+        
+        
+    }
     
     
     

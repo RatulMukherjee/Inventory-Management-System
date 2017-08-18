@@ -24,7 +24,7 @@
         else
 
         {
-            echo "ID not found";
+            echo "404";
         }
             
           
@@ -77,6 +77,78 @@
          
          
      }
+        
+        public function showBrands(){
+            
+            $conn=$this->getConnection();
+            
+            
+            $sql= "select distinct brand from category";
+            $result = $conn->query($sql);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+                echo json_encode($arr);
+
+            }
+            
+        }
+        
+        public function showProducts($brand){
+            
+            $conn=$this->getConnection();
+            
+            $sql= "select distinct name from category where brand='".$brand."'";
+            $result = $conn->query($sql);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+                echo json_encode($arr);
+
+            }
+        }
+        
+        public function addProducts($data){
+            
+         //print_r($data);
+            
+           
+              $conn = $this->getConnection();
+            
+            $sql= "select cid from category where name='".$data['products']."' and brand='".$data['brands']."'";
+            $result = $conn->query($sql);
+            $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+            }
+            $sql="insert into products(cid,model,quantity,price,gst) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].")";
+            
+             if ($conn->query($sql) === TRUE) 
+            {
+                echo "{\"error\":\"False\",\"message\":\"Stock registered Successfully\"}";
+            } 
+            else 
+            {
+                echo "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
+            }
+            
+       
+            
+            
+            
+        }
         
         
         
