@@ -8,28 +8,28 @@ class category {
 	public function setCid($cid) {
 		$this->cid=$cid;
 	}
-	public function getCid($cid) {
+	public function getCid() {
 		return $this->cid;
 	}
 
 	public function setName($name) {
 		$this->name=$name;
 	}
-	public function getName($name) {
+	public function getName() {
 		return $this->name;
 	}
 
 	public function setType($type) {
 		$this->type=$type;
 	}
-	public function getType($type) {
+	public function getType() {
 		return $this->type;
 	}
 
 	public function setBrand($brand) {
 		$this->brand=$brand;
 	}
-	public function getBrand($brand) {
+	public function getBrand() {
 		return $this->brand;
 	}
 }

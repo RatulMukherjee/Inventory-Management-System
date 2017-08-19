@@ -143,8 +143,39 @@
             {
                 echo "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
             }
+        }
+        
+        
+        public function addBrand($obj)
+        {
+           $conn=$this->getConnection();
             
-       
+            $sql ="select cid from category where brand='".$obj->getBrand()."' and name='".$obj->getName()."'";
+             $result = $conn->query($sql);
+             
+            if($result->num_rows != 0)
+            {
+                 echo "{\"error\":\"True\",\"message\":\"Brand or Product already exists\" }";
+
+            }
+            
+            else if ($result->num_rows == 0)
+            {
+                
+                $sql="insert into category(name,brand,type) values('".$obj->getName()."','".$obj->getBrand()."','".$obj->getType()."')";
+                  if ($conn->query($sql) === TRUE) 
+            {
+                echo "{\"error\":\"False\",\"message\":\"Brand/Product added Successfully\"}";
+            } 
+            else 
+            {
+                echo "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
+            }
+                
+            }
+            
+            
+            
             
             
             

@@ -1,5 +1,80 @@
+  
+
 $(document).ready(function(){
-         
+    
+$("#addbrand").click(function(){
+    if ($("#brandmod").val() != '' &&  $("#productmod").val() != '' && $("input[name='group1']").is(':checked'))
+        {
+                $.ajax({
+                type: "POST",
+                url: "../app/api/addnewbrand_api.php",
+                data: {
+                    brand:  $("#brandmod").val(),
+                    product:$("#productmod").val(),
+                    type: $("input[name='group1']:checked").val()
+                },    
+                success: function(result)
+                {
+                    //console.log(result);
+                    
+                    var string = JSON.parse(result);
+                    
+                    if (string.error=="False")
+                      {
+                        window.location = "addproducts.html";
+                      }
+                    else if (string.error == "True")
+                        {
+                            Materialize.toast(string.message, 3000, 'rounded')
+                        }
+                    else
+                        {
+                                Materialize.toast(string.message, 3000, 'rounded')
+                        }
+                },
+				error: function(XMLHttpRequest,textStatus,errorThrown)
+				{
+					if (XMLHttpRequest.readyState == 4)
+					{
+						alert(XMLHttpRequest.statusText);
+					}
+					else  if (XMLHttpRequest.readyState == 0)
+					{
+						("Internal Server Error");
+					}
+					else
+					{
+						alert("Sorry for the inconvience.Please try again after some time.")
+					}
+				}     
+                });
+        }
+    else{
+            Materialize.toast("Field/s are Empty", 3000, 'rounded')
+        }
+});
+/*    MODAL TO FILL UP NEW BRANDS/PRODUCTS*/
+     $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+       
+        var brand=$("#brands").find("option:selected").attr('value')
+          
+          if (brand != '')
+            {
+                $("#brandmod").val(brand);
+                $("#brandmod").prop("readonly",true);
+                $("#modbrandlabel").addClass('hide');
+            }
+      } 
+    }
+  );
+    
 /*AJAX TO RETRIEVE AVAILABLE BRANDS IN THE DATABASE*/    
            $.ajax({
                 type: "POST",
@@ -33,7 +108,6 @@ $(document).ready(function(){
 					}
 				}     
                 });
-    
    /* END OF AJAX*/
            
     
@@ -85,13 +159,10 @@ $(document).ready(function(){
     
     /*UNHIDE THE FORM TO WRITE PRODUCT DETAILS*/
     $('#products').change(function(){
-            var product=$(this).find("option:selected").attr('value');
+            //var product=$(this).find("option:selected").attr('value');
              $("#productinfo").removeClass('hide');
              $('#gst').material_select();     
     });
-    
-    
-    
    /* FINAL SUBMIT*/
     
            $("#addform").submit(function(e){
@@ -115,7 +186,7 @@ $(document).ready(function(){
                     
                     if (string.error =="False" && string.message =="Success" )
                       {
-                                Materialize.toast(string.message, 3000, 'rounded')
+                             Materialize.toast(string.message, 3000, 'rounded')  
                                 
                          
                           
@@ -156,32 +227,14 @@ $(document).ready(function(){
 				}     
                 }); 
   });
-    
     /*END OF AJAX*/
     
     /*RESET BUTTON*/
-    
         $("#adddiv").on('click','#reset',function(){
            
             $("#productinfo").find('input').val('');
             $("#add").val("Add");
             $("#reset").val("Reset");
             $('#add').attr('disabled', false);
-            
-            
-              
-            
-            
         });
-        
-        
-        
-   
-    
-    
-           
-           
        });
-    
-    
-    

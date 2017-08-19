@@ -41,6 +41,14 @@ class AdminBL
         
     }
     
+    public function addBrand($obj)
+    {
+        
+        return $this->addao->addBrand($obj);
+        
+        
+    }
+    
     
     
 }
