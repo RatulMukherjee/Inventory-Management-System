@@ -49,6 +49,10 @@ class AdminBL
         
     }
     
+    public function showList()
+    {
+        return $this->addao->showList();
+    }
     
     
 }

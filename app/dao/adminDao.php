@@ -34,20 +34,27 @@
         
      public function searchProducts($brands,$products,$price)
      {
-         
-         //print_r($brands);
-         
-         
+      /*   
+         print_r($brands);
+         print_r($products);*/
          $conn= $this->getConnection();
+         
+         
          //echo "hello";
          
-         $str="select cid,quantity,model,price,gst from products where cid in (select cid from category where name='".$products."' and ";
+         
+         /*QUERY TO FIND DETAILS OF A SPECIFIC PRODUCT OF SPECIFIED BRANDS*/
+         $str='';
+         
+        if ($products != "none" && $brands != "none") {
+         
+         $str.="select cid,quantity,model,price,gst from products where cid in (select cid from category where name='".$products."' and ";
          
          
          for($i=0; $i<count($brands);$i++)
          {
              if ($i==0)
-             $str.="brand='".$brands[$i]."'";
+               $str.="brand='".$brands[$i]."'";
              else
             {     
              $str.="or brand='".$brands[$i]."'";
@@ -58,25 +65,73 @@
          $str.=")";
          
          $str.= "and price < ".$price;
-         
-         //echo $str;
-         $result = $conn->query($str);
-         $arr =  array();
-        if($result->num_rows>0)
-        {
-            while($row=$result->fetch_assoc())
-            {
-              $arr[]=$row;
-            }
-            echo json_encode($arr);
-
-        }
-         else
-             echo "No stock";
-         
-         
-         
+            
+            //echo $str;
      }
+         
+         /*QUERY TO FIND ALL PRODUCTS OF A PARTICULAR TYPE (NO BRANDS SPECIFIED)*/
+         
+         else if  ($products != "none" && $brands == "none")
+         {
+            
+             $str.="select cid,quantity,model,price,gst from products where cid in (select cid from category where name='".$products."') and price < ".$price;
+             
+             //echo $str;
+             
+         }
+         else if($products == "none" && $brands != "none")
+         {
+              $str.="select cid,quantity,model,price,gst from products where cid in (select cid from category where ";   
+              for($i=0; $i<count($brands);$i++)
+              {
+                  if ($i== 0)
+                    $str.="brand='".$brands[$i]."'";
+                  else
+                    $str.="or brand='".$brands[$i]."'";
+                  
+              }
+             
+             $str.= ") and price < ".$price;
+              
+              //echo $str;
+         }
+
+         
+         
+         else
+         {
+             $str.="select cid,quantity,model,price,gst from products where price <".$price;
+             //echo $str;
+             
+         }
+         
+         
+        $result = $conn->query($str);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+                 $data =  array();
+                 $data["error"]="False";    
+                $data[]=$arr;
+                echo json_encode($data); 
+               
+         
+         
+         
+            }
+         else {
+             
+             $arr["error"]= "True";
+             echo json_encode($arr);
+             
+         }
+        
+     }
+         
         
         public function showBrands(){
             
@@ -179,6 +234,42 @@
             
             
             
+        }
+        public function showList()
+            
+        {
+            
+               
+            
+            $conn=$this->getConnection();
+              
+            $sql= "select distinct brand from category";
+            $result = $conn->query($sql);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+               $brands=json_encode($arr);
+
+            }
+             //$brands = $this->showBrands();    
+         $sql1= "select distinct name from category";
+            $result = $conn->query($sql1);
+             $arr1 =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr1[]=$row;
+                }
+               $products= json_encode($arr1);
+            
+             echo json_encode(array_merge(json_decode($brands, true),json_decode($products, true)));
+
+            }
         }
         
         

@@ -1,7 +1,50 @@
 $(document).ready(function() {
     $('select').material_select();
-
-             
+               $.ajax({
+                type: "POST",
+                url: "../app/api/showlist_api.php",
+                success: function(result)
+                {
+                  
+                 
+                   var string=JSON.parse(result);
+                    console.log(string);
+                   var str='<option value="" disabled selected>Choose your option</option>';
+                    $("#products").append(str);
+                     for(i=0 ; i<string.length; i++)
+                        {
+                            if (string[i].brand != null)
+                            str+='<option value="'+string[i].brand+'">'+string[i].brand+'</option>';
+                        }
+                    $("#brands").append(str);
+                    var str='';
+                     for(i=0 ; i<string.length; i++)
+                        {
+                            if (string[i].name != null)
+                            str+='<option value="'+string[i].name+'">'+string[i].name+'</option>';
+                        }
+                    
+                    $("#products").append(str);
+                    $('#brands').material_select();
+                    
+                    
+                },
+				error: function(XMLHttpRequest,textStatus,errorThrown)
+				{
+					if (XMLHttpRequest.readyState == 4)
+					{
+						alert(XMLHttpRequest.statusText);
+					}
+					else  if (XMLHttpRequest.readyState == 0)
+					{
+						("Internal Server Error");
+					}
+					else
+					{
+						alert("Sorry for the inconvience.Please try again after some time.")
+					}
+				}     
+                });
 var rangeSlider = document.getElementById('slider-range');
 
 noUiSlider.create(rangeSlider, {
@@ -18,31 +61,63 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 }); 
            $("#searchform").submit(function(e){
            e.preventDefault();
-               table = $('#example').DataTable( );
-       table.destroy();
-            var dataString = {products: $("#products").val(), brands:$("#brands").val(),price: rangeSlider.noUiSlider.get()};
-                     $.ajax({
+              
+               var dataString={price: rangeSlider.noUiSlider.get()};
+               if ($("#products").val() == null)
+                   {
+                      dataString.products="none";
+                       
+                       
+                   }
+               else
+               {
+                  dataString.products=$("#products").val();  
+                   
+               }
+               if ($("#brands").val().length == 0 )
+                   {
+                       dataString.brands="none";
+                       
+                   }
+               else
+               {    
+                   dataString.brands=$("#brands").val();
+                   
+               }
+               
+            //var dataString = {products: $("#products").val(), brands:$("#brands").val(),price: rangeSlider.noUiSlider.get()};
+                console.log(dataString);
+                          $.ajax({
                 type: "POST",
                 url: "../app/api/searchproducts_api.php",
                 data: dataString,
                 success: function(result)
                 {
+                    var string= JSON.parse(result);
+                    
                     //console.log(result);
                     
-                    var arr= [];
-                    var string = JSON.parse(result);
-                    
-                    for(i=0; i<string.length; i++ )
-                        {
-                            var data = [];
-                            
-                            data.push(string[i].model);
-                            data.push(string[i].quantity);
-                            data.push(string[i].price);
-                            data.push(string[i].gst );
-                            
-                            arr.push(data); 
-                        }
+                  if (string.error == "False")
+                    {
+                         table = $('#example').DataTable( );
+                         table.destroy();
+                  
+                        var arr= [];
+                        for(i=0; i<string[0].length; i++ )
+                                {
+                                    var data = [];
+
+                                    data.push(string[0][i].model);
+                                    data.push(string[0][i].quantity);
+                                    data.push(string[0][i].price);
+                                    data.push(string[0][i].gst);
+
+                                    arr.push(data); 
+                                }
+                        
+                       
+                        
+                       
                      	$('#example').DataTable( {
 						dom: 'Blfrtip',
 						
@@ -57,6 +132,15 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 						"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 
 					} );
+                    }
+                    
+                    
+                    
+                    else if (string.error == "True")
+                        {
+                            Materialize.toast("No stock", 5000, 'rounded') 
+                            
+                        }
                 },
 				error: function(XMLHttpRequest,textStatus,errorThrown)
 				{
