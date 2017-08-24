@@ -70,8 +70,8 @@
 		</ul>
 	</header>
 	<main>
-	<div class="container">
-	<div class="row center" style="margin-right: -9px;">
+	<div class="container-fluid">
+	<div class="row center">
 	<div class=" col s12 m4 l4 offset-m4 offset-l4">
 	<div class="card z-depth-4" style="border-radius: 10px;">
         <h3>Add a Product</h3>
@@ -79,7 +79,7 @@
 	</div>
 	</div>
     <div class="row">
-        <div class="col s12 m10 l10 offset-m2 offset-l2">
+        <div class="col s12 m6 l6 ">
             <div class="card z-depth-4" style="border-radius: 10px;">
                 <div class="card-content">
                     <form id="addform" action="../app/api/addproducts_api.php" method="POST">    
@@ -135,10 +135,24 @@
                     </div>
 	       </div>
         </div>
-    
-      
-
-
+        <div class="col s12 m5 l5 offset-m1 offset-l1">
+            <!--<div class="card z-depth-4">-->
+              <form action="../app/api/uploadxls_api.php" method="post" enctype="multipart/form-data">
+                <div class="file-field input-field">
+                  <div class="btn red">
+                    <span>File</span>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
+                <div class="input-field col s12 center" id="adddiv"> 
+                   <input class="btn red"  type="submit" name="upload" value="Upload" id="upload">
+                </div>  
+              </form>
+            <!--</div>-->
+        </div>
     </div>
 	</div>
      <div id="modal1" class="modal">

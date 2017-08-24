@@ -15,7 +15,14 @@
     <link rel="stylesheet" href="css/style.css">   
     
      
-
+    <style>
+        .toast-rounded{
+            
+            height: 100px;
+            
+        }
+    
+    </style>
   
   
 </head>
@@ -89,20 +96,18 @@
                 <div class="card-content">
                     <form id="searchform" action="../app/api/login_api.php" method="POST">    
                     <div class="row">
-                          <div class="input-field col s12">
-                            <select id="products" name="products">
-                              <option value="" disabled selected>Choose your option</option>
-                              <option value="Monitor">Monitors</option>
-                              <option value="Printer">Printers</option>
-                              <option value="Laptop">Laptops</option>
-                            </select>
-                            <label>Products</label>
-                          </div>
-                           <div class="input-field col s12">
+                        <div class="input-field col s12">
                             <select multiple id="brands">
+                                
                             </select>
                             <label>Brands</label>
-                          </div>
+                        </div>
+                        <div class="input-field col s12">
+                            <select id="products" name="products">
+
+                            </select>
+                            <label>Products</label>
+                        </div>
                          <div class="input-field col s12">
                              <span id ="slider-range-value">less than</span>
                              <div id="slider-range"></div>

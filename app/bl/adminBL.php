@@ -54,6 +54,12 @@ class AdminBL
         return $this->addao->showList();
     }
     
+    public function getUname($email){
+        
+        return $this->addao->getUname($email);
+        
+    }
+    
     
 }
 

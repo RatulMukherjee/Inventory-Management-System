@@ -1,6 +1,11 @@
   
 
 $(document).ready(function(){
+  
+    $("#accname").html(localStorage.getItem('name'));
+    
+    
+    
     
 $("#addbrand").click(function(){
     if ($("#brandmod").val() != '' &&  $("#productmod").val() != '' && $("input[name='group1']").is(':checked'))
@@ -179,8 +184,8 @@ $("#addbrand").click(function(){
                 data: dataString,
                 success: function(result)
                 {
-                    //console.log(result);
-                    var string= JSON.parse(result);
+                    console.log(result);
+                /*    var string= JSON.parse(result);
                     //console.log(string.message);
                     
                     
@@ -205,7 +210,7 @@ $("#addbrand").click(function(){
                     //$("#adddiv").removeClass('center');
                     $("#adddiv").find('#reset').remove();
                     var str= '<input class="btn"  type="button" name="reset" value="Reset" id="reset">';     
-                    $("#adddiv").append(str);
+                    $("#adddiv").append(str);*/
                     
                   
                     

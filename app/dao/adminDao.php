@@ -171,6 +171,16 @@
             }
         }
         
+        public function modelExists($model){
+            
+            $conn = $this->getConnection();
+            
+            
+            $sql = "SELECT cid from products where model='".$model."'";
+             
+            return $conn->query($sql)->num_rows;
+        }
+        
         public function addProducts($data){
             
          //print_r($data);
@@ -188,16 +198,32 @@
                   $arr[]=$row;
                 }
             }
-            $sql="insert into products(cid,model,quantity,price,gst) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].")";
+            $sql='';
             
-             if ($conn->query($sql) === TRUE) 
+          if ($this->modelExists($data['model']) == 0)
             {
-                echo "{\"error\":\"False\",\"message\":\"Stock registered Successfully\"}";
+                $sql.="insert into products(cid,model,quantity,price,gst) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].")";
+            
+
+            }
+            else
+            {
+                $sql.="Update products
+                      SET quantity= quantity+'".$data['quantity']."',price='".$data['price']."',gst='".$data['gst']."'
+                       where model='".$data['model']."'";
+                //echo $sql;
+            }
+           
+            if ($conn->query($sql) === TRUE) 
+            {
+                echo "{\"error\":\"False\",\"message\":\"Stock registered/updated Successfully\"}";
             } 
             else 
             {
                 echo "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
             }
+                    
+                    
         }
         
         
@@ -270,6 +296,25 @@
              echo json_encode(array_merge(json_decode($brands, true),json_decode($products, true)));
 
             }
+        }
+        
+        public function getUname($email)
+        {
+            $conn=$this->getConnection();
+            
+            $sql="select uname from users where email='".$email."'";
+             $result = $conn->query($sql);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+                echo json_encode($arr);
+
+            }
+
         }
         
         

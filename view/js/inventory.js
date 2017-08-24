@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    $('select').material_select();
+    
+    $("#accname").html(localStorage.getItem('name'));
+
                $.ajax({
                 type: "POST",
                 url: "../app/api/showlist_api.php",
@@ -8,8 +10,8 @@ $(document).ready(function() {
                   
                  
                    var string=JSON.parse(result);
-                    console.log(string);
-                   var str='<option value="" disabled selected>Choose your option</option>';
+                    //console.log(string);
+                  var str='<option value="" disabled selected>Choose your option</option>';
                     $("#products").append(str);
                      for(i=0 ; i<string.length; i++)
                         {
@@ -21,11 +23,12 @@ $(document).ready(function() {
                      for(i=0 ; i<string.length; i++)
                         {
                             if (string[i].name != null)
-                            str+='<option value="'+string[i].name+'">'+string[i].name+'</option>';
+                                str+='<option value="'+string[i].name+'">'+string[i].name+'</option>';
                         }
                     
-                    $("#products").append(str);
+                   $("#products").append(str)
                     $('#brands').material_select();
+                    $('#products').material_select();
                     
                     
                 },
@@ -66,8 +69,6 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                if ($("#products").val() == null)
                    {
                       dataString.products="none";
-                       
-                       
                    }
                else
                {
@@ -77,16 +78,14 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                if ($("#brands").val().length == 0 )
                    {
                        dataString.brands="none";
-                       
                    }
                else
                {    
                    dataString.brands=$("#brands").val();
                    
                }
-               
             //var dataString = {products: $("#products").val(), brands:$("#brands").val(),price: rangeSlider.noUiSlider.get()};
-                console.log(dataString);
+                //console.log(dataString);
                           $.ajax({
                 type: "POST",
                 url: "../app/api/searchproducts_api.php",
