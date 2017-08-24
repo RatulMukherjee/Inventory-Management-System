@@ -4,9 +4,6 @@ $(document).ready(function(){
   
     $("#accname").html(localStorage.getItem('name'));
     
-    
-    
-    
 $("#addbrand").click(function(){
     if ($("#brandmod").val() != '' &&  $("#productmod").val() != '' && $("input[name='group1']").is(':checked'))
         {
@@ -79,7 +76,6 @@ $("#addbrand").click(function(){
       } 
     }
   );
-    
 /*AJAX TO RETRIEVE AVAILABLE BRANDS IN THE DATABASE*/    
            $.ajax({
                 type: "POST",
@@ -114,7 +110,6 @@ $("#addbrand").click(function(){
 				}     
                 });
    /* END OF AJAX*/
-           
     
     /*AJAX TO SHOW PRODUCTS AVAILABLE UNDER THAT BRAND*/
     
@@ -161,7 +156,6 @@ $("#addbrand").click(function(){
          
     /*END OF AJAX*/
     
-    
     /*UNHIDE THE FORM TO WRITE PRODUCT DETAILS*/
     $('#products').change(function(){
             //var product=$(this).find("option:selected").attr('value');
@@ -185,22 +179,17 @@ $("#addbrand").click(function(){
                 success: function(result)
                 {
                     console.log(result);
-                /*    var string= JSON.parse(result);
+                    var string= JSON.parse(result);
                     //console.log(string.message);
                     
                     
                     if (string.error =="False" && string.message =="Success" )
                       {
                              Materialize.toast(string.message, 3000, 'rounded')  
-                                
-                         
-                          
                       }
                     else if (string.error == "True")
                         {
                               Materialize.toast(string.message, 3000, 'rounded')
-                               
-                            
                         }
                     else{
                             Materialize.toast(string.message, 3000, 'rounded')
@@ -210,10 +199,7 @@ $("#addbrand").click(function(){
                     //$("#adddiv").removeClass('center');
                     $("#adddiv").find('#reset').remove();
                     var str= '<input class="btn"  type="button" name="reset" value="Reset" id="reset">';     
-                    $("#adddiv").append(str);*/
-                    
-                  
-                    
+                    $("#adddiv").append(str);
                 },
 				error: function(XMLHttpRequest,textStatus,errorThrown)
 				{
@@ -242,4 +228,44 @@ $("#addbrand").click(function(){
             $("#reset").val("Reset");
             $('#add').attr('disabled', false);
         });
+    
+    /*UPLOAD XLSX FILE AJAX*/
+    
+    $("#addxls").submit(function(e){
+           e.preventDefault();
+        
+            var file_data = $('#fileToUpload').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('file', file_data);              
+             $.ajax({
+                        url: '../app/api/uploadxls_api.php', // point to server-side PHP script 
+                        dataType: 'text', // what to expect back from the PHP script
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function (result) {
+                            
+                            //var string=JSON.parse(result);
+                            console.log(result);
+                           
+                        },
+                        error: function(XMLHttpRequest,textStatus,errorThrown)
+                        {
+                            if (XMLHttpRequest.readyState == 4)
+                            {
+                                alert(XMLHttpRequest.statusText);
+                            }
+                            else  if (XMLHttpRequest.readyState == 0)
+                            {
+                                ("Internal Server Error");
+                            }
+                            else
+                            {
+                                alert("Sorry for the inconvience.Please try again after some time.")
+                            }
+                        }
+                    });
+  });
        });
