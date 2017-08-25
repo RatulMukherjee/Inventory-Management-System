@@ -7,41 +7,48 @@ $target_file = $target_dir . basename($_FILES["file"]["name"]);
 $uploadOk = 0;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
+$data=array();
+
+
 //echo $target_file;
 if(isset($_FILES['file']['name'])) {
     $uploadOk = 1;
+    $data['error']="False";
+    $data['message']='';
     
 }
 
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    $data['message'].="File already exists!";
+    $data['error']="True";  
     $uploadOk = 0;
 }
 
 if ($_FILES["file"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
+    $data['message'].="Your file is too large.";
+    $data['error']="True";
     $uploadOk = 0;
 }
 
 if($imageFileType != "xlsx") {
-    echo "Sorry, only excel files are allowed.";
+    $data['message'].="Only excel files are allowed.";
+    $data['error']="True";
     $uploadOk = 0;
 }
 
 if ($uploadOk == 0) 
 {
-    echo "Sorry, your file was not uploaded.";
-
+    $data['message'].="Your file was not uploaded.";
+    $data['error']="True";
+    echo json_encode($data);
 } 
 else 
 {
     
     
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        
-        
-          
-            $dir="uploads/".$_FILES["file"]["name"];
+            
+        $dir="uploads/".$_FILES["file"]["name"];
             $inputFileType = 'Excel2007';
    
 
@@ -51,10 +58,9 @@ else
         $lastRow = $worksheet->getHighestRow();
         
 		$result=array();
+        $index=0;
         for ($row = 2; $row <= $lastRow; $row++) 
-        {
-           
-            
+        { 
             $arr=array();
             $arr['brands']=$worksheet->getCell('A'.$row)->getValue();
             $arr['products']=$worksheet->getCell('B'.$row)->getValue();
@@ -66,15 +72,16 @@ else
             
             
             $bl =new AdminBL();
-            $result[$row-2]=$bl->addProducts($arr);
+            $result[$index++]=($bl->addProducts($arr));
+            
+         
+            
+            
+            
 		}
-        
         echo json_encode($result);
     } 
-    else 
-    {
-        echo "Sorry, there was an error uploading your file.";
-    }
+   
 }
 
 

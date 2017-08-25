@@ -216,11 +216,11 @@
            
             if ($conn->query($sql) === TRUE) 
             {
-               return "{\"error\":\"False\",\"message\":\"Stock registered/updated Successfully\"}";
+               return '{"error":"False","message":"Stock registered/updated Successfully"}';
             } 
             else 
             {
-                return "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
+                return '{"error":"True","message":"'.$conn->error.'"}';
             }
                     
                     

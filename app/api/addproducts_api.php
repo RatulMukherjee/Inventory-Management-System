@@ -6,7 +6,7 @@ if(isset($_POST['brands'])&&isset($_POST['products'])&&isset($_POST['model'])&&i
     
 {
     $d= new AdminBL();
-    $d->addProducts($_POST);
+    echo ($d->addProducts($_POST));
 }
 
 

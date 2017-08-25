@@ -180,7 +180,8 @@ $("#addbrand").click(function(){
                 {
                     console.log(result);
                     var string= JSON.parse(result);
-                    //console.log(string.message);
+                    
+                    //console.log(string.error);
                     
                     
                     if (string.error =="False" && string.message =="Success" )
@@ -246,10 +247,39 @@ $("#addbrand").click(function(){
                         data: form_data,
                         type: 'post',
                         success: function (result) {
+                           var string = JSON.parse(result);
                             
-                            //var string=JSON.parse(result);
-                            console.log(result);
-                           
+                          
+                            
+                            
+                            
+                                 var string=JSON.parse(result);
+                            if (string.error == "True")
+                                {
+                                    Materialize.toast(string.message, 3000, 'rounded')
+                                }
+                           else
+                                { 
+                                    /*   var string1=JSON.parse(string[0]);
+                                        console.log(string1.error);*/  
+                                        //console.log(string.length);
+                                    var count = 0;
+                                    for(i=0;i<string.length;i++)
+                                        {
+                                            var string1=JSON.parse(string[i]);
+                                            
+                                            //console.log(string[i]);
+                                            if (string1.error == "False")
+                                                {
+                                                    
+                                                    count++;
+                                                    
+                                                }
+                                        }
+                                    
+                                     Materialize.toast(""+count+" items updated/registered", 3000, 'rounded')
+                                    
+                                }
                         },
                         error: function(XMLHttpRequest,textStatus,errorThrown)
                         {
