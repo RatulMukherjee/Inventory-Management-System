@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>IMS</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">   
+    
+     
+    <style>
+        .toast-rounded{
+            
+            height: 100px;
+            
+        }
+    
+    </style>
+  
+  
+</head>
+<body>
+	<header>
+		<div class="navbar-fixed">
+			<nav class="primary-color" role="navigation" style="background-color: #969696">
+				<div class="nav-wrapper navcontainer">
+					<a id="logo-container" href="inventory.html"
+						class="brand-logo tertiary-color text-lighten-2"><span
+						class="blue-text text-darken-1"><font size="6">I</font>MS</span></a>
+					<ul class=" hide-on-med-and-down" style="margin-left: 190px;">
+						<li class="bold  "><a href="dashboard.html"
+							class="waves-effect waves-light tertiary-color">Dashboard</a></li>
+						<li class="bold active"><a href="inventory.html"
+							class="waves-effect waves-light tertiary-color ">Inventory</a></li>
+						<li class="bold"><a href="searchuser.html"
+							class="waves-effect waves-light tertiary-color">Search User</a></li>
+						<li class="bold"><a href="addproducts.html"
+							class="waves-effect waves-light tertiary-color ">Add Products</a></li>
+					</ul>
+					<ul class="right">
+						<li class="hide-on-med-and-down"><a href="#"><i
+								class="material-icons md-26">account_circle </i></a></li>
+						<li class="hide-on-med-and-down"><span id="accname"></span></li>
+						<li><a class="dropdown-button" href="#!"
+							data-activates="profile-dropdown"><i
+								class="material-icons right">arrow_drop_down</i></a></li>
+					</ul>
+					<a href="#" data-activates="nav-mobile"
+						class="button-collapse top-nav full hide-on-large-only"> <i
+						class="material-icons">menu</i></a>
+				</div>
+			</nav>
+
+		</div>
+
+		<ul id="nav-mobile" class="side-nav secondary-color z-depth-2">
+			<li style="height: 30px;"></li>
+			<li class="bold active "><a href="dashboard.html"
+				class="waves-effect waves-light tertiary-color"><i
+					class="material-icons">dashboard</i>Dashboard</a></li>
+			<li class="bold"><a href="inventory.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">payment</i>Inventory</a></li>
+			<li class="bold"><a href="searchuser.html"
+				class="waves-effect waves-light tertiary-color"><i
+					class="material-icons">show_chart</i>Search User</a></li>
+			<li class="bold"><a href="addproducts.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Add Products</a></li>
+		</ul>
+		<ul id="profile-dropdown" class="dropdown-content"
+			style="width: 128px; position: absolute; top: 57px; left: 101.234px; opacity: 1; display: none;">
+			<li><a href="#" id="logout"><i class="material-icons black">keyboard_tab</i>
+					Logout</a></li>
+		</ul>
+	</header>
+	<main>
+	<div class="container-fluid">
+	<div class="row center">
+	<div class=" col s12 m4 l4 offset-m4 offset-l4">
+	<div class="card z-depth-4">
+        <h3>Edit Product Details</h3>
+	</div>
+	</div>
+	</div>
+    <div class="row">
+        <div class="col s12 m4 l4">
+            <div class="card z-depth-4">
+                <div class="card-content">
+                    <form id="searchform" action="../app/api/login_api.php" method="POST">    
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select multiple id="brands">
+                                
+                            </select>
+                            <label>Brands</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select id="products" name="products">
+
+                            </select>
+                            <label>Products</label>
+                        </div>
+                         <div class="input-field col s12">
+                             <span id ="slider-range-value">less than</span>
+                             <div id="slider-range"></div>
+                             
+                        </div>
+                         <div class="input-field col s12 center">
+                          <input class="waves-effect secondary-color  waves-light btn center z-depth-3"  type="submit" name="search" value="Search" id="Search">
+                        </div>     
+                    </div>
+                   
+                     </form>
+
+                    </div>
+	       </div>
+        </div>
+      <div class="col s12 m8 l8">
+            <table id="example" class="display" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Price</th>
+                    <th>Options</th>
+                  
+                    
+                </tr>
+            </thead>
+         
+          </table>
+        </div>
+      
+
+
+    </div>
+	</div>
+               <div id="modal1" class="modal">
+   <div class="modal-content">
+       <form id="editform">
+        <div class="input-field col s12 hide">
+            <input type="text" id="pidmod" name="pidmod" required>
+            <label for="pidmod" id="pidmodlabel">PId</label>
+        </div>   
+        <div class="input-field col s12">
+            <input type="text" id="modelmod" name="modelmod" required>
+            <label for="modelmod" id="modelmodlabel">Model</label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="pricemod" name="pricemod" required>
+            <label for="pricemod">Price</label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="quantitymod" name="quantitymod" required>
+            <label for="quantitymod">Quantity</label>
+        </div>
+              <div class="input-field col s12">
+                               <select id="gstmod" name="gstmod" required>
+                              <option value="" disabled selected>Choose your option</option>
+                              <option value="5">5</option>
+                              <option value="12">12</option>
+                              <option value="18">18</option>
+                              <option value="28">28</option>
+                            </select>
+                               <label>GST</label>
+                        </div>
+     </form>
+       
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="btn modal-action waves-effect waves-green" id="editbrand">Edit </a>
+      <a href="#!" class="modal-action btn modal-close waves-effect waves-green ">Close</a>
+    </div>
+   
+  </div>
+	</main>
+    <footer>
+      <div class="footer-copyright">
+        <div class="container">
+          IMS
+        <a class="black-text  right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+    
+  
+    
+  <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.js"></script>
+    <script src="js/wNumb.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+    
+    
+    <script src="js/init.js"></script>
+    <script src="js/editproduct.js"></script>
+    
+   
+    
+ 
+  </body>
+</html>

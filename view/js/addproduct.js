@@ -124,9 +124,11 @@ $("#addbrand").click(function(){
                 url: "../app/api/showproducts_api.php",
                 success: function(result)
                 {
-                  //console.log(result);
+                  
+                    
+                    //console.log(result);
                     var string = JSON.parse(result);
-                    var str='<option value="" disabled selected>Choose your option</option>';
+                   var str='<option value="" disabled selected>Choose your option</option>';
                     for(i=0 ; i<string.length; i++)
                         {
                             str+='<option value="'+string[i].name+'">'+string[i].name+'</option>';
@@ -134,7 +136,7 @@ $("#addbrand").click(function(){
                     $("#products").find('option').remove();
                     $("#products").append(str);
                     $('#products').material_select(); 
-                    $("#productsdiv").removeClass('hide');
+                    $("#productsdiv").removeClass('hide')
                 },
 				error: function(XMLHttpRequest,textStatus,errorThrown)
 				{

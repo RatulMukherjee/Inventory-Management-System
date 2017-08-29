@@ -1,6 +1,6 @@
 <?php
 require_once('../entity/category.php');
-require_once('../bl/adminBL.php');
+require_once('../bl/productBL.php');
 //print_r($_POST);
 
 if (isset($_POST['brand'])&&isset($_POST['product'])&&isset($_POST['type']))
@@ -14,7 +14,7 @@ if (isset($_POST['brand'])&&isset($_POST['product'])&&isset($_POST['type']))
     
     //var_dump($e);
     
-    $d = new AdminBL();
+  $d= new ProductBL();
     
     $d->addBrand($e);
     

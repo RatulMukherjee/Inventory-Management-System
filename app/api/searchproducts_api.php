@@ -1,13 +1,13 @@
 <?php 
     
-require_once('../bl/adminBL.php');
+require_once('../bl/productBL.php');
 
 if(isset($_POST['brands'])&&isset($_POST['price'])&&isset($_POST['products']))
 {
     
  
     
-    $d= new AdminBL();
+$d= new ProductBL();
     $d->searchProducts($_POST['brands'],$_POST['products'],$_POST['price']);
     
     

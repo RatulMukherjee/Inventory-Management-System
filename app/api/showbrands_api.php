@@ -1,9 +1,9 @@
 
 <?php
 
-require_once('../bl/adminBL.php');
+require_once('../bl/productBL.php');
     
-    $d= new AdminBL();
+    $d= new ProductBL();
     $d->showBrands();
 
 ?>

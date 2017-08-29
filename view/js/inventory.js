@@ -98,7 +98,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                     
                   if (string.error == "False")
                     {
-                         table = $('#example').DataTable( );
+                        var  table = $('#example').DataTable( );
                          table.destroy();
                   
                         var arr= [];
@@ -113,11 +113,8 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 
                                     arr.push(data); 
                                 }
-                        
                        
-                        
-                       
-                     	$('#example').DataTable( {
+                    	$('#example').DataTable( {
 						dom: 'Blfrtip',
 						
 						data: arr,
@@ -153,7 +150,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 					}
 					else
 					{
-						alert("Sorry for the inconvience.Please try again after some time.")
+						alert("Sorry for the inconvience.Please try again after some time.");
 					}
 				}     
                 });

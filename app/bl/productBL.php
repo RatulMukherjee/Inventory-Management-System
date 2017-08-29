@@ -1,21 +1,14 @@
 <?php
     
-require_once('../dao/adminDao.php');
-class AdminBL 
+require_once('../dao/productDao.php');
+class ProductBL 
 {
 	private $addao;
 	public function __construct()
 	{
-		$this->addao = new AdminDao();
+		$this->addao = new ProductDao();
 		
 	}
-    
-    public function search ($email, $name){
-        
-        
-        return $this->addao->search($email,$name);
-        
-    } 
     
     public function searchProducts($brands,$products,$price ){
         
@@ -54,15 +47,11 @@ class AdminBL
         return $this->addao->showList();
     }
     
-    public function getUname($email){
-        
-        return $this->addao->getUname($email);
-        
-    }
+ 
     
-    public function editProduct(){
+    public function editProduct($data){
         
-        return $this->addao->editProduct();
+        return $this->addao->editProduct($data);
         
     }
     

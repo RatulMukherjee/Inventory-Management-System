@@ -1,7 +1,7 @@
 <?php
 
 require_once("Classes/PHPExcel.php");
-require_once('../bl/adminBL.php');
+require_once('../bl/productBL.php');
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["file"]["name"]);
 $uploadOk = 0;
@@ -71,7 +71,7 @@ else
             
             
             
-            $bl =new AdminBL();
+            $bl =new ProductBL();
             $result[$index++]=($bl->addProducts($arr));
             
          
