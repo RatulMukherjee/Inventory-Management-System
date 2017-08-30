@@ -8,8 +8,37 @@
     flex: 1 0 auto;
   }
 
-footer{
-    
-    background-color: #969696;
+.collapsible-body {
+    display: none;
+    border-bottom: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2rem;
+    background-color: #1e282c; 
+    color: #fff;
     
 }
+
+.side-nav li a{
+	color: #fff; font-size: 12px;
+}
+
+nav{
+    background-color: #408eba; padding: 0px; height:50px; width: 78%;
+    
+}
+header, main, footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+        
+nav{
+    background-color: #408eba; padding: 0px; height:50px; width: 100%;
+    
+}
+        
+    }

@@ -100,7 +100,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                 {
                     var string= JSON.parse(result);
                    
-                    console.log(result);
+                    //console.log(result);
                     
                   if (string.error == "False")
                     { 
@@ -155,16 +155,6 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                           $("#quantitymod").focus();
                                           $("#gstmod").material_select(); 
                                         
-                                    /*      $("#gstmod").val(string[0][index].gst);
-                                          $("#gstmod[value='"+string[0][index].gst+"']").prop('selected', true);
-                                          $('#gstmod option[value="5"]').attr("selected", "selected");
-                                         
-                                          console.log(string[0][index].gst);
-                                      */
-                                      $("#gstmod option[text="+string[0][index].gst+"]").attr("selected","selected");
-                                     
-                                      
-                                      
                                       
                                       }
                                     

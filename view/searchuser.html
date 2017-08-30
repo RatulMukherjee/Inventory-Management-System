@@ -20,60 +20,142 @@
   
 </head>
 <body>
-	<header>
-		<div class="navbar-fixed">
-			<nav class="primary-color" role="navigation" style="background-color: #969696">
-				<div class="nav-wrapper navcontainer">
-					<a id="logo-container" href="searchuser.html"
-						class="brand-logo tertiary-color text-lighten-2"><span
-						class="blue-text text-darken-1"><font size="6">I</font>MS</span></a>
-					<ul class=" hide-on-med-and-down" style="margin-left: 190px;">
-						<li class="bold  "><a href="dashboard.html"
-							class="waves-effect waves-light tertiary-color">Dashboard</a></li>
-						<li class="bold"><a href="inventory.html"
-							class="waves-effect waves-light tertiary-color ">Inventory</a></li>
-						<li class="bold active"><a href="searchuser.html"
-							class="waves-effect waves-light tertiary-color">Search User</a></li>
-						<li class="bold"><a href="addproducts.html"
-							class="waves-effect waves-light tertiary-color ">Add Products</a></li>
-					</ul>
-					<ul class="right">
+<header>
+<div class="navbar-fixed">
+<nav class="primary-color" role="navigation" >
+<div class="nav-wrapper navcontainer">																				
+	<ul class="right">
 						<li class="hide-on-med-and-down"><a href="#"><i
 								class="material-icons md-26">account_circle </i></a></li>
 						<li class="hide-on-med-and-down"><span id="accname"></span></li>
-						<li><a class="dropdown-button" href="#!"
-							data-activates="profile-dropdown"><i
-								class="material-icons right">arrow_drop_down</i></a></li>
+						<li><a class="dropdown-button" href="#!" data-activates="profile-dropdown"><i class="material-icons right">arrow_drop_down</i></a></li>
 					</ul>
-					<a href="#" data-activates="nav-mobile"
+<a href="#" data-activates="nav-mobile"
 						class="button-collapse top-nav full hide-on-large-only"> <i
 						class="material-icons">menu</i></a>
-				</div>
-			</nav>
+</div>
+</nav>
+</div>
 
-		</div>
+<!------------- Mobile Nav ---------------	-->	
+<ul id="nav-mobile" class="side-nav secondary-color z-depth-2" style="background-color: #1e282c; color: #fff;">
+		<ul class="collapsible" data-collapsible="accordion">
+      <li>
+          <div class="collapsible-header"><i class="material-icons">dashboard</i>DashBoard</div>
+          <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+            <li><a href="dashboard.html" class="waves-effect waves-light"><i class="material-icons">dashboard</i>DashBoard</a></li></ul>
+          </div>
+              
+              </li>
+          
+    <li>
+      <div class="collapsible-header"><i class="material-icons">collections</i>Products</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="addproducts.html"
+				class="waves-effect waves-light"><i
+					class="material-icons">trending_up</i>Add Products</a></li>
+          <li><a href="editproduct.html"
+				class="waves-effect waves-light"><i
+					class="material-icons">trending_up</i>Edit Products</a></li></ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Users</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="searchuser.html"
+				class="waves-effect waves-light"><i
+					class="material-icons white">group</i>Search User</a></li>
+         </ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Purchase</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="addproducts.html"
+				class="waves-effect waves-light  "><i
+					class="material-icons">trending_up</i>Add Products</a></li>
+          <li><a href="addproducts.html"
+				class="waves-effect waves-light"><i
+                                                                    class="material-icons">trending_up</i>Edit Products Products</a></li></ul></div>
+    </li>
+  </ul>
+		</ul>
+<ul id="profile-dropdown" class="dropdown-content"
+style="width: 128px; position: absolute; top: 57px; left: 101.234px; opacity: 1; display: none;">
+<li><a href="#" id="logout"><i class="material-icons black">keyboard_tab</i>
+Logout</a></li>
+</ul>
+<!------------- Mobile Nav ---------------	-->	
 
-		<ul id="nav-mobile" class="side-nav secondary-color z-depth-2">
-			<li style="height: 30px;"></li>
-			<li class="bold"><a href="dashboard.html"
-				class="waves-effect waves-light tertiary-color"><i
-					class="material-icons">dashboard</i>Dashboard</a></li>
-			<li class="bold"><a href="inventory.html"
+
+
+	
+<!------------- Desktop Nav ---------------	-->				
+	
+<ul class="hide-on-med-and-down">
+
+</ul>
+    
+<ul id="slide-out" class="side-nav fixed" style="background-color: #1e282c; color: #fff;">
+<li style="background-color:#3a80a7;">
+<center>
+IMS
+</center>
+</li>
+          
+<li style="padding: 20px 0;">
+<center>
+<img src="img/logo.png" width="100">
+</center>						
+</li>
+<li>
+    
+      <ul class="collapsible" data-collapsible="accordion">
+      <li>
+          <div class="collapsible-header"><i class="material-icons">dashboard</i>DashBoard</div>
+          <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+            <li><a href="dashboard.html" class="waves-effect waves-light tertiary-color "><i class="material-icons">dashboard</i>DashBoard</a></li></ul>
+          </div>
+              
+              </li>
+          
+    <li>
+      <div class="collapsible-header"><i class="material-icons">collections</i>Inventory</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+           <li><a href="inventory.html"
 				class="waves-effect waves-light tertiary-color "><i
-					class="material-icons">payment</i>Inventory</a></li>
-			<li class="bold active"><a href="searchuser.html"
-				class="waves-effect waves-light tertiary-color"><i
-					class="material-icons">show_chart</i>Search User</a></li>
-			<li class="bold"><a href="addproducts.html"
+					class="material-icons">trending_up</i>Inventory</a></li>
+          
+          
+          <li><a href="addproducts.html"
 				class="waves-effect waves-light tertiary-color "><i
 					class="material-icons">trending_up</i>Add Products</a></li>
-		</ul>
-		<ul id="profile-dropdown" class="dropdown-content"
-			style="width: 128px; position: absolute; top: 57px; left: 101.234px; opacity: 1; display: none;">
-			<li><a href="#" id="logout"><i class="material-icons black">keyboard_tab</i>
-					Logout</a></li>
-		</ul>
-	</header>
+          <li><a href="editproduct.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Edit Products</a></li>
+         
+          
+          </ul></div>
+         
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Users</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="searchuser.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Search User</a></li>
+         </ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Purchase</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="addproducts.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Purchase Bill</a></li>
+          <li><a href="addproducts.html"
+				class="waves-effect waves-light tertiary-color "><i
+                                                                    class="material-icons">trending_up</i>Sales Report</a></li></ul></div>
+    </li>
+  </ul>
+    
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>	
+    
+     
+  </header> 
 	<main>
 	<div class="container">
 	<div class="row center" style="margin-right: -9px;">
