@@ -51,10 +51,10 @@ $(document).ready(function() {
 var rangeSlider = document.getElementById('slider-range');
 
 noUiSlider.create(rangeSlider, {
-	start: [ 4000 ],
+	start: [ 500000 ],
 	range: {
 		'min': [  2000 ],
-		'max': [ 50000 ]
+		'max': [ 500000 ]
 	}
 });
     var rangeSliderValueElement = document.getElementById('slider-range-value');
@@ -84,9 +84,12 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                    dataString.brands=$("#brands").val();
                    
                }
+               
+            
+                   
             //var dataString = {products: $("#products").val(), brands:$("#brands").val(),price: rangeSlider.noUiSlider.get()};
-                //console.log(dataString);
-                          $.ajax({
+                console.log(dataString);
+                         $.ajax({
                 type: "POST",
                 url: "../app/api/searchproducts_api.php",
                 data: dataString,
@@ -94,9 +97,9 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                 {
                     var string= JSON.parse(result);
                     
-                    //console.log(result);
+                    console.log(string);
                     
-                  if (string.error == "False")
+               if (string.error == "False")
                     {
                         var  table = $('#example').DataTable( );
                          table.destroy();
@@ -108,8 +111,10 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 
                                     data.push(string[0][i].model);
                                     data.push(string[0][i].quantity);
+                                    data.push(string[0][i].part_number)
                                     data.push(string[0][i].price);
                                     data.push(string[0][i].gst);
+                                    data.push(string[0][i].product_dscp);
 
                                     arr.push(data); 
                                 }

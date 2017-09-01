@@ -170,7 +170,9 @@ $("#addbrand").click(function(){
            e.preventDefault();
         
     var dataString = $("#addform").serialize();
-        $.ajax({
+               //console.log(dataString);
+               
+       $.ajax({
                 type: "POST",
                 url: "../app/api/addproducts_api.php",
 				beforeSend: function(){
@@ -181,7 +183,7 @@ $("#addbrand").click(function(){
                 success: function(result)
                 {
                     console.log(result);
-                    var string= JSON.parse(result);
+                  var string= JSON.parse(result);
                     
                     //console.log(string.error);
                     
@@ -219,7 +221,7 @@ $("#addbrand").click(function(){
 						alert("Sorry for the inconvience.Please try again after some time.")
 					}
 				}     
-                }); 
+                });
   });
     /*END OF AJAX*/
     
@@ -227,6 +229,7 @@ $("#addbrand").click(function(){
         $("#adddiv").on('click','#reset',function(){
            
             $("#productinfo").find('input').val('');
+            $("#product_dscp").val('');
             $("#add").val("Add");
             $("#reset").val("Reset");
             $('#add').attr('disabled', false);

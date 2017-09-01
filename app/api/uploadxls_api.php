@@ -68,6 +68,8 @@ else
             $arr['quantity']=$worksheet->getCell('D'.$row)->getValue();
             $arr['price']=$worksheet->getCell('E'.$row)->getValue();
             $arr['gst']=$worksheet->getCell('F'.$row)->getValue();
+            $arr['part_number']=$worksheet->getCell('G'.$row)->getValue();
+            $arr['product_dscp']=$worksheet->getCell('H'.$row)->getValue();
             
             
             

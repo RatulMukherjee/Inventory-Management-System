@@ -17,7 +17,7 @@ class ProductDao extends BaseDao{
          
         if ($products != "none" && $brands != "none") {
          
-         $str.="select cid,pid,quantity,model,price,gst from products where cid in (select cid from category where name='".$products."' and ";
+         $str.="select cid,pid,quantity,part_number,product_dscp,model,price,gst from products where cid in (select cid from category where name='".$products."' and ";
          
          
          for($i=0; $i<count($brands);$i++)
@@ -30,8 +30,10 @@ class ProductDao extends BaseDao{
              $str.="and name='".$products."'";
             }
          }
-         
-         $str.=")";
+           
+                $str.=")";
+            
+            
          
          $str.= "and price < ".$price;
             
@@ -43,14 +45,14 @@ class ProductDao extends BaseDao{
          else if  ($products != "none" && $brands == "none")
          {
             
-             $str.="select cid,pid,quantity,model,price,gst from products where cid in (select cid from category where name='".$products."') and price < ".$price;
+             $str.="select cid,pid,quantity,part_number,product_dscp,model,price,gst from products where cid in (select cid from category where name='".$products."') and price < ".$price;
              
              //echo $str;
              
          }
          else if($products == "none" && $brands != "none")
          {
-              $str.="select cid,pid,quantity,model,price,gst from products where cid in (select cid from category where ";   
+              $str.="select cid,pid,quantity,part_number,product_dscp,model,price,gst from products where cid in (select cid from category where ";   
               for($i=0; $i<count($brands);$i++)
               {
                   if ($i== 0)
@@ -60,7 +62,13 @@ class ProductDao extends BaseDao{
                   
               }
              
-             $str.= ") and price < ".$price;
+             
+             
+
+                $str.=")";
+            
+             
+               $str.= "and price < ".$price;
               
               //echo $str;
          }
@@ -69,7 +77,7 @@ class ProductDao extends BaseDao{
          
          else
          {
-             $str.="select cid,pid,quantity,model,price,gst from products where price <".$price;
+             $str.="select cid,pid,quantity,part_number,product_dscp,model,price,gst from products where price <".$price;
              //echo $str;
              
          }
@@ -162,7 +170,7 @@ class ProductDao extends BaseDao{
             
           if ($this->modelExists($data['model']) == 0)
             {
-                $sql.="insert into products(cid,model,quantity,price,gst) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].")";
+                $sql.="insert into products(cid,model,quantity,price,gst,part_number,product_dscp) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].",'".$data['part_number']."','".$data['product_dscp']."')";
             }
             else
             {
@@ -170,8 +178,12 @@ class ProductDao extends BaseDao{
                       SET quantity= quantity+'".$data['quantity']."',price='".$data['price']."',gst='".$data['gst']."'
                        where model='".$data['model']."'";
             }
+            
+            
+            
+            //echo $sql;
            
-            if ($conn->query($sql) === TRUE) 
+        if ($conn->query($sql) === TRUE) 
             {
                return '{"error":"False","message":"Stock registered/updated Successfully"}';
             } 
@@ -179,7 +191,7 @@ class ProductDao extends BaseDao{
             {
                 return '{"error":"True","message":"'.$conn->error.'"}';
             }
-                    
+                 
                     
         }
         

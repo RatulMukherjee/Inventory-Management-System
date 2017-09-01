@@ -168,82 +168,42 @@ IMS
 	<div class="row center">
 	<div class=" col s12 m4 l4 offset-m4 offset-l4">
 	<div class="card z-depth-4">
-        <h3>Inventory</h3>
+        <h3>Purchase Bill</h3>
 	</div>
 	</div>
 	</div>
-    <div class="row">
-        <div class="col s12 m4 l4">
+        <div class="row">
+        <div class="col s12 m8 l8 o">
             <div class="card z-depth-4">
                 <div class="card-content">
-                    <form id="searchform" action="../app/api/login_api.php" method="POST">    
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select multiple id="brands">
-                                
-                            </select>
-                            <label>Brands</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <select id="products" name="products">
-
-                            </select>
-                            <label>Products</label>
-                        </div>
-                         <div class="input-field col s12">
-                             <span id ="slider-range-value">less than</span>
-                             <div id="slider-range"></div>
+                    <form id="billform" action="../app/api/bill/purchasebill_api.php" method="POST">    
+                        <div class="row">
+                            <div class="input-field col s4">
+                              <input  id="in_id" type="text" class="validate" required>
+                              <label for="in_id">Invoice Number</label>
+                             </div>
+                            <div class="input-field col s4">
+                             <input type="text" name="bill_date" placeholder="Billing Date"  class="datepicker validate" required>
                              
+                            </div>
+                             <div class="input-field col s4">
+                              <input id="bill_name" type="text" class="validate">
+                              <label for="bill_name">Bill Name</label>
+                            </div>
+
                         </div>
-                         <div class="input-field col s12 center">
-                          <input class="waves-effect secondary-color  waves-light btn center z-depth-3"  type="submit" name="search" value="Search" id="Search">
-                        </div>     
-                    </div>
                    
                      </form>
 
                     </div>
 	       </div>
-        </div>
-      <div class="col s12 m8 l8">
-            <table id="example" class="display" cellspacing="0" >
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Quantity</th>
-                    <th>Part Number</th>
-                    <th>Price/Unit</th>
-                    <th>GST</th>
-                    <th>Product Description</th>
-                    
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Model</th>
-                    <th>Quantity</th>
-                    <th>Part Number</th>
-                    <th>Price/Unit</th>
-                    <th>GST</th>
-                    <th>Product Description</th>
-                    
-                </tr>
-            </tfoot>           </table>
-        </div>
-      
+        </div>    
 
-
-    </div>
 	</div>
-	</main>
-    <footer>
-      <div class="footer-copyright">
-        <div class="container">
-          IMS
-        <a class="black-text  right" href="#!">More Links</a>
         </div>
-      </div>
-    </footer>
+        
+	</main>
+    
     
  
   <!--  Scripts-->
@@ -261,7 +221,22 @@ IMS
     
     
     <script src="js/init.js"></script>
-    <script src="js/inventory.js"></script>
+   
+    <script>
+    
+        
+          $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15, // Creates a dropdown of 15 years to control year,
+                today: 'Today',
+                clear: 'Clear',
+                close: 'Ok',
+                closeOnSelect: false // Close upon selecting a date,
+              });
+    
+    
+    
+    </script>
    
     
  

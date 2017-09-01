@@ -2,6 +2,9 @@
     
 require_once('../bl/productBL.php');
 
+
+/*print_r($_POST);*/
+
 if(isset($_POST['brands'])&&isset($_POST['price'])&&isset($_POST['products']))
 {
     
