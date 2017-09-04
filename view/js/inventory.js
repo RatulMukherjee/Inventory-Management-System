@@ -115,6 +115,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                     data.push(string[0][i].price);
                                     data.push(string[0][i].gst);
                                     data.push(string[0][i].product_dscp);
+                                    data.push("<button class=\"btn\">History</button>");
 
                                     arr.push(data); 
                                 }
@@ -132,15 +133,19 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 
 						"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 
-					} );
+                    } );
+                    
+
+                    $('#example tbody').on( 'click', 'button', function () {
+                        var index = $(this).closest('tr').index();
+                        var table=$('#example').DataTable();
+                        var data = table.row( $(this).parents('tr') ).data();
+                        console.log(data[0]); 
+                            });
                     }
-                    
-                    
-                    
                     else if (string.error == "True")
                         {
                             Materialize.toast("No stock", 5000, 'rounded') 
-                            
                         }
                 },
 				error: function(XMLHttpRequest,textStatus,errorThrown)

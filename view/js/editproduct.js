@@ -236,24 +236,10 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                 alert("Sorry for the inconvience.Please try again after some time.");
                             }
                         }     
-                        });  
-
-
-                    
-                    
-                    
-                    
-                   
-                        
-                    
-                    
-                    
-                             
-                                      
+                        });        
                 });
-    
-    
-                
-    
- 
          });
+        
+         
+     
+         

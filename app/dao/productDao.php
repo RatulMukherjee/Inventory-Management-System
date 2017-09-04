@@ -142,20 +142,25 @@ class ProductDao extends BaseDao{
             }
         }
         
-        public function modelExists($model){
+        public function modelExists($model,$part_number){
             
             $conn = $this->getConnection();
             
             
-            $sql = "SELECT cid from products where model='".$model."'";
+            $sql = "SELECT cid from products where model='".$model."' and part_number='".$part_number."'";
              
             return $conn->query($sql)->num_rows;
         }
         
-        public function addProducts($data){
-            
-              $conn = $this->getConnection();
-            
+
+
+            // FINDS CID/PID OF A GIVEN PRODUCT WITH A SPECIFIC PART NUMBER
+
+
+        public function findID($data)
+        {
+
+            $conn = $this->getConnection();
             $sql= "select cid from category where name='".$data['products']."' and brand='".$data['brands']."'";
             $result = $conn->query($sql);
             $arr =  array();
@@ -166,9 +171,48 @@ class ProductDao extends BaseDao{
                   $arr[]=$row;
                 }
             }
+
+            if ($this->modelExists($data['model'],$data['part_number']) != 0)
+            {
+                $sql="select pid from products where model='".$data['model']."' and part_number='".$data['part_number']."' and cid=".$arr[0]['cid']; 
+                
+                $result = $conn->query($sql);
+                
+                if($result->num_rows>0)
+                {
+                    while($row=$result->fetch_assoc())
+                    {
+                      $arr[]=$row;
+                    }
+                }
+
+                
+                
+                
+                
+            } 
+            return $arr; 
+            
+            
+        }
+
+
+        // END OF FUNCTION-----------------------------------------------------------------------
+        
+        
+    //    FUNCTION TO ADD A NEW PRODUCT TO THE INVENTORY DATABASE OR UPDATE STOCK------------------------------ 
+        
+        public function addProducts($data){
+            
+             
+            $arr =  array();
+            $arr=$this->findID($data);
+            
+           
+            $conn = $this->getConnection();
             $sql='';
             
-          if ($this->modelExists($data['model']) == 0)
+          if ($this->modelExists($data['model'],$data['part_number']) == 0)
             {
                 $sql.="insert into products(cid,model,quantity,price,gst,part_number,product_dscp) values(".$arr[0]['cid'].",'".$data['model']."',".$data['quantity'].",".$data['price'].",".$data['gst'].",'".$data['part_number']."','".$data['product_dscp']."')";
             }
@@ -176,7 +220,7 @@ class ProductDao extends BaseDao{
             {
                 $sql.="Update products
                       SET quantity= quantity+'".$data['quantity']."',price='".$data['price']."',gst='".$data['gst']."'
-                       where model='".$data['model']."'";
+                       where pid=".$arr[1]['pid'];
             }
             
             
@@ -194,6 +238,9 @@ class ProductDao extends BaseDao{
                  
                     
         }
+
+
+        // END OF FUNCTION-------------------------------------------------------------------------------------- 
         
         
         public function addBrand($obj)
@@ -202,7 +249,7 @@ class ProductDao extends BaseDao{
             
             $sql ="select cid from category where brand='".$obj->getBrand()."' and name='".$obj->getName()."'";
              $result = $conn->query($sql);
-             
+            
             if($result->num_rows != 0)
             {
                  echo "{\"error\":\"True\",\"message\":\"Brand or Product already exists\" }";
