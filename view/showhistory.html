@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+      function GetURLParameter(sParam)
+
+{
+
+    var sPageURL = window.location.search.substring(1);
+ var sURLVariables = sPageURL.split('&');
+
+    for (var i = 0; i < sURLVariables.length; i++)
+
+    {
+
+        var sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] == sParam)
+
+     {
+
+            return sParameterName[1];
+
+        }
+
+    }
+
+}
+$(document).ready(function () {
+  var cid=GetURLParameter('cid');
+  var pid=GetURLParameter('pid');
+  
+  //alert("cid= "+cid+"pid= "+pid );
+      $.ajax({
+        type: "POST",
+        url: "../app/api/productrecord_api.php",
+        data: {
+          c_id: cid,
+          p_id: pid
+
+        },
+        success: function (result) 
+        {
+          console.log(result);
+        }
+      });
+
+
+});
+  
+
+
+
+
+</script>
+  
+</body>
+</html>

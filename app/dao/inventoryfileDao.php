@@ -105,4 +105,41 @@ class InventoryFileDao extends BaseDao{
       }
     }
 
+    public function showRecord ( int $cid, int $pid)
+    {       
+        $pdao = new ProductDao();
+
+        $brandarr=array();
+        $brandarr=$pdao->getBrandByCid($cid,$pid); 
+
+        $fileName="../inventoryfiles/".$brandarr[0]['brand']."_".$cid."_".$pid.".xlsx";
+
+        if(file_exists($fileName)) {
+            $inputFileType = 'Excel2007';
+             $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+             $excelObj = $objReader->load($fileName);
+              $worksheet = $excelObj->getSheet(0);
+             $lastRow = $worksheet->getHighestRow();
+             $result=array();
+             for ($row = 5; $row <= $lastRow; $row++) 
+             { 
+                 $arr=array();
+                 $arr['Date']=$worksheet->getCell('A'.$row)->getValue();
+                 $arr['Vendor/Customer']=$worksheet->getCell('B'.$row)->getValue();
+                 $arr['Voucher Type']=$worksheet->getCell('C'.$row)->getValue();
+                 $arr['Units']=$worksheet->getCell('D'.$row)->getValue();
+                 $arr['price']=$worksheet->getCell('E'.$row)->getValue();
+                 $arr['Total']=$worksheet->getCell('F'.$row)->getValue();
+                 $arr['Final Stock']=$worksheet->getCell('G'.$row)->getValue();
+              
+                 $result[]=$arr;
+             }
+            }
+
+             print_r($result);
+
+
+
+    }
+
 }

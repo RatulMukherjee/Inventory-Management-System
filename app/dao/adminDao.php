@@ -6,7 +6,6 @@
             
              $conn=$this->getConnection();
             
-            
             $sql="select * from users where uname='".$name."' or email='".$email."'";
             
             //echo $sql;
@@ -38,14 +37,9 @@
             $sql="select uname from users where email='".$email."'";
              $result = $conn->query($sql);
              $arr =  array();
-            if($result->num_rows>0)
-            {
-                while($row=$result->fetch_assoc())
-                {
-                  $arr[]=$row;
-                }
-                echo json_encode($arr);
-            }
+             $arr=$this->getArray($result);
+
+             echo json_encode($arr);
         }
         
      

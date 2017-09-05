@@ -61,13 +61,7 @@ class ProductDao extends BaseDao{
                     $str.="or brand='".$brands[$i]."'";
                   
               }
-             
-             
-             
-
                 $str.=")";
-            
-             
                $str.= "and price < ".$price;
               
               //echo $str;
@@ -140,6 +134,28 @@ class ProductDao extends BaseDao{
                 }
                 echo json_encode($arr);
             }
+        }
+
+        public function getBrandByCid(int $cid)
+        {
+            $conn=$this->getConnection();
+            
+            $sql= "select brand,name from category where cid=".$cid ;
+            $result = $conn->query($sql);
+             $arr =  array();
+            if($result->num_rows>0)
+            {
+                while($row=$result->fetch_assoc())
+                {
+                  $arr[]=$row;
+                }
+                return $arr;
+            }
+            else
+            {
+                $error=false;                    
+                return $error;
+            } 
         }
         
         public function modelExists($model,$part_number){

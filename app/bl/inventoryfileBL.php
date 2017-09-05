@@ -15,6 +15,11 @@ class InventoryFileBL
        return $this->ifdao->purchaseRecord($data,$type);
 
     }
+
+    public function showRecord( int $cid, int $pid )
+    {
+        return $this->ifdao->showRecord($cid, $pid);
+    }
     }
 
 

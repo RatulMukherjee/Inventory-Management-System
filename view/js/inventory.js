@@ -88,7 +88,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
             
                    
             //var dataString = {products: $("#products").val(), brands:$("#brands").val(),price: rangeSlider.noUiSlider.get()};
-                console.log(dataString);
+                //console.log(dataString);
                          $.ajax({
                 type: "POST",
                 url: "../app/api/searchproducts_api.php",
@@ -97,7 +97,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                 {
                     var string= JSON.parse(result);
                     
-                    console.log(string);
+                    //console.log(string);
                     
                if (string.error == "False")
                     {
@@ -115,8 +115,8 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                     data.push(string[0][i].price);
                                     data.push(string[0][i].gst);
                                     data.push(string[0][i].product_dscp);
-                                    data.push("<button class=\"btn\">History</button>");
-
+                                    data.push('<a class="btn" target="_blank" href="showhistory.html?cid='+string[0][i].cid+'&pid='+string[0][i].pid+'">Click</a>')
+                                    // data.push('<a target="_blank" href="showhistory.html?cid='+string[0][i].cid+'&pid='+string[0][i].pid+'>History</a>');
                                     arr.push(data); 
                                 }
                        
@@ -134,14 +134,15 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 						"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 
                     } );
+                    $('#example tbody').on( 'click', 'button', function () {
+                        var url='showhistory.html?cid='+$(this).attr('cid');
+
+                        var win = window.open(url, '_blank');
+                        win.focus();
+                        });
                     
 
-                    $('#example tbody').on( 'click', 'button', function () {
-                        var index = $(this).closest('tr').index();
-                        var table=$('#example').DataTable();
-                        var data = table.row( $(this).parents('tr') ).data();
-                        console.log(data[0]); 
-                            });
+                    
                     }
                     else if (string.error == "True")
                         {
@@ -164,5 +165,13 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 					}
 				}     
                 });
+
+             
   });
+
+
+
+  
          });
+
+        
