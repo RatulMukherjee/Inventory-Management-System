@@ -156,7 +156,7 @@ IMS
   </header>
 
 <main>
-    <div class="col s12 l12 m12">
+    <div class="col s12 l12 m12" style="margin-top: -30px;" >
    	 <ul class="tabs">
         <li class="tab col s6 l6 m6"><a href="#test1">Invoice Details</a></li>
         <li class="tab col s6 l6 m6"><a  href="#test2">Invoice Description</a></li>
@@ -328,7 +328,7 @@ IMS
               <div class="col l2 m2 s6">
                             <p> HSN Code :</p> 
                             <div class="text-box">
-                            <input type="number" name="hsn_code" id="hsn_code"> 
+                            <input type="text" name="hsn_code" id="hsn_code"> 
                           </div>           
                            </div>
                   <div class="col l2 m2 s6">
@@ -340,19 +340,31 @@ IMS
                 <div class="col l2 m2 s6">
                             <p>CGST :</p> 
                             <div class="text-box">
-                            <input type="number" name="cgst" id="cgst">
+                              <select name="cgst" id="cgst">
+                                <option value="0" selected>0%</option>
+                                <option value="9">9</option>
+                                <option value="14">14</option>
+                              </select> 
                              </div>   
                             </div>
                 <div class="col l2 m2 s6">
                             <p>SGST :</p> 
                             <div class="text-box">
-                            <input type="number" name="sgst" id="sgst"> 
+                              <select name="sgst" id="sgst">
+                                <option value="0" selected>0%</option>
+                                <option value="9">9%</option>
+                                <option value="14">14%</option>
+                              </select> 
                           </div>           
                             </div>
                 <div class="col l2 m2 s6">
                             <p> IGST :</p> 
                             <div class="text-box">
-                            <input type="number" name="igst" id="igst"> 
+                              <select name="igst" id="igst">
+                                  <option value="0" selected>0%</option>
+                                <option value="18">18%</option>
+                                <option value="28">28%</option>
+                              </select> 
                           </div>           
                            </div>  
 
@@ -362,7 +374,40 @@ IMS
      
    </form>
   
-  
+   <div class="col l12">  
+  <center>     
+<button id="addinvoiceitem" class="waves-effect waves-light btn" style="background-color:#e8910d;">+ADD</button>
+<button id="previous" class="waves-effect waves-light btn" style="background-color:#408eba;">PREVIOUS</button>
+<button id="submit" class="waves-effect waves-light btn" style="background-color:#2dbf64;">SUBMIT</button>
+</center>  
+</div> 
+   
+<div class="col l12" style="margin-top: 15px;">
+	
+  <table id="invoicetable">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Description of Goods</th>
+            <th>HSN Code</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Taxable Value</th>
+            <th>CGST</th>
+            <th>SGST</th>
+            <th>IGST</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+  <tbody>
+
+  </tbody>
+
+</table>	
+	
+	
+	
+</div> 
   
   
   </div>

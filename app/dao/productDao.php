@@ -39,6 +39,7 @@ class ProductDao extends BaseDao{
             
             //echo $str;
      }
+
          
          /*QUERY TO FIND ALL PRODUCTS OF A PARTICULAR TYPE (NO BRANDS SPECIFIED)*/
          
@@ -100,6 +101,8 @@ class ProductDao extends BaseDao{
              echo json_encode($arr);
          }
      }
+
+
         
         public function showBrands(){
             
@@ -146,6 +149,28 @@ class ProductDao extends BaseDao{
                 $error=false;                    
                 return $error;
             } 
+        }
+
+
+        public function getPartNumber($data)
+        {
+            $conn=$this->getConnection();
+
+            $sql="select part_number from products where model='".$data['model']."'";
+
+            //echo $sql;
+            $result=$conn->query($sql); 
+            $arr= array();
+
+            $arr= $this->getArray($result);
+
+            return $arr;
+
+
+
+
+            
+
         }
         
         public function modelExists($model,$part_number){
@@ -335,5 +360,8 @@ class ProductDao extends BaseDao{
             }
         }
 }
+
+
+
 
 ?>

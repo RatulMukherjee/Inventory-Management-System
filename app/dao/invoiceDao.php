@@ -21,10 +21,6 @@ public function generateInvoiceDescription($data)
         echo "{\"error\":\"True\",\"message\":\"".$conn->error."\"}";
         return;
     }
-
-    // $sql="INSERT INTO `invoice_description` (`invoice_number`, `brand`, `product`, `hsn_code`, `no_of_units`, `unit_value`, `cgst`, `sgst`, `igst`) VALUES ('".$data['invoice_number']."','".$data['brand']."','".$data['product']."','".$data['hsn_code']."',".$data['no_of_units'].",".$data['unit_value'].",".$data['cgst'].",".$data['sgst'].",".$data['igst'].")";
-
-    // echo $sql;
 }
 
 public function addInvoiceDetail($data)

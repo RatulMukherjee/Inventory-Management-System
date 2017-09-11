@@ -54,6 +54,13 @@ class ProductBL
         return $this->addao->editProduct($data);
         
     }
+
+    public function getPartNumber($model)
+    {
+        $arr=array();
+        $arr=$this->addao->getPartNumber($model);
+        echo json_encode($arr);
+    }
     
     
     
