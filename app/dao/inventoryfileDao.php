@@ -124,19 +124,27 @@ class InventoryFileDao extends BaseDao{
              for ($row = 5; $row <= $lastRow; $row++) 
              { 
                  $arr=array();
+                 $arr['product']=$worksheet->getCell('G1')->getValue();
                  $arr['Date']=$worksheet->getCell('A'.$row)->getValue();
-                 $arr['Vendor/Customer']=$worksheet->getCell('B'.$row)->getValue();
-                 $arr['Voucher Type']=$worksheet->getCell('C'.$row)->getValue();
+                 $arr['Vendor_Customer']=$worksheet->getCell('B'.$row)->getValue();
+                 $arr['Voucher_Type']=$worksheet->getCell('C'.$row)->getValue();
                  $arr['Units']=$worksheet->getCell('D'.$row)->getValue();
                  $arr['price']=$worksheet->getCell('E'.$row)->getValue();
                  $arr['Total']=$worksheet->getCell('F'.$row)->getValue();
-                 $arr['Final Stock']=$worksheet->getCell('G'.$row)->getValue();
+                 $arr['Final_Stock']=$worksheet->getCell('G'.$row)->getValue();
               
                  $result[]=$arr;
              }
+              echo json_encode($result);
+            }
+            else
+            {
+                echo "Record Doesnt Exist";
+
+
             }
 
-             print_r($result);
+            
 
 
 

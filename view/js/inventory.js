@@ -115,7 +115,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                     data.push(string[0][i].price);
                                     data.push(string[0][i].gst);
                                     data.push(string[0][i].product_dscp);
-                                    data.push('<a class="btn" target="_blank" href="showhistory.html?cid='+string[0][i].cid+'&pid='+string[0][i].pid+'">Click</a>')
+                                    data.push('<a class="btn" target="_blank" href="showhistory.html?cid='+string[0][i].cid+'&pid='+string[0][i].pid+'">History</a>')
                                     // data.push('<a target="_blank" href="showhistory.html?cid='+string[0][i].cid+'&pid='+string[0][i].pid+'>History</a>');
                                     arr.push(data); 
                                 }

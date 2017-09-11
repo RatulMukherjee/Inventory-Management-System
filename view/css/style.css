@@ -4,6 +4,12 @@
     flex-direction: column;
   }
 
+p{
+font-size: 14px; color: #A3A3A3;	
+}
+h6{
+font-weight: bold; color:#414141; font-size: 13px; text-decoration: underline;
+}
   main {
     flex: 1 0 auto;
   }
@@ -17,6 +23,10 @@
     background-color: #1e282c; 
     color: #fff;
     
+}
+
+.text-box{
+margin-top:-18px; 	
 }
 
 .side-nav li a{

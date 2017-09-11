@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FORM</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="css/style.css">
+ 
+
+</head>
+
+<body>
+<header>
+<div class="navbar-fixed">
+<nav class="primary-color" role="navigation" >
+<div class="nav-wrapper navcontainer">																				
+	<ul class="right">
+						<li class="hide-on-med-and-down"><a href="#"><i
+								class="material-icons md-26">account_circle </i></a></li>
+						<li class="hide-on-med-and-down"><span id="accname"></span></li>
+						<li><a class="dropdown-button" href="#!" data-activates="profile-dropdown"><i class="material-icons right">arrow_drop_down</i></a></li>
+					</ul>
+<a href="#" data-activates="nav-mobile"
+						class="button-collapse top-nav full hide-on-large-only"> <i
+						class="material-icons">menu</i></a>
+</div>
+</nav>
+</div>
+
+<!------------- Mobile Nav ---------------	-->	
+<ul id="nav-mobile" class="side-nav secondary-color z-depth-2" style="background-color: #1e282c; color: #fff;">
+		<ul class="collapsible" data-collapsible="accordion">
+      <li>
+          <div class="collapsible-header"><i class="material-icons">dashboard</i>DashBoard</div>
+          <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+            <li><a href="dashboard.html" class="waves-effect waves-light"><i class="material-icons">dashboard</i>DashBoard</a></li></ul>
+          </div>
+              
+              </li>
+          
+    <li>
+      <div class="collapsible-header"><i class="material-icons">collections</i>Products</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="editproduct.html"
+        class="waves-effect waves-light"><i
+            class="material-icons">trending_up</i>Inventory</a></li><li><a href="inventory.html"
+				class="waves-effect waves-light"><i
+					class="material-icons">trending_up</i>Add Products</a></li>
+          <li><a href="editproduct.html"
+				class="waves-effect waves-light"><i
+					class="material-icons">trending_up</i>Edit Products</a></li></ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Users</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="searchuser.html"
+				class="waves-effect waves-light"><i
+					class="material-icons">group</i>Search User</a></li>
+         </ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Purchase</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="invoicegnrtor.html"
+				class="waves-effect waves-light  "><i
+					class="material-icons">trending_up</i>Generate Bill</a></li>
+          <li><a href="invoicegnrtor.html"
+				class="waves-effect waves-light"><i
+            class="material-icons">trending_up</i>Print_Invoice</a></li></ul></div>
+    </li>
+  </ul>
+		</ul>
+<ul id="profile-dropdown" class="dropdown-content"
+style="width: 128px; position: absolute; top: 57px; left: 101.234px; opacity: 1; display: none;">
+<li><a href="#" id="logout"><i class="material-icons black">keyboard_tab</i>
+Logout</a></li>
+</ul>
+<!------------- Mobile Nav ---------------	-->	
+
+
+
+	
+<!------------- Desktop Nav ---------------	-->				
+	
+<ul class="hide-on-med-and-down">
+
+</ul>
+    
+<ul id="slide-out" class="side-nav fixed" style="background-color: #1e282c; color: #fff;">
+<li style="background-color:#3a80a7;">
+<center>
+IMS
+</center>
+</li>
+          
+<li style="padding: 20px 0;">
+<center>
+<img src="img/logo.png" width="100">
+</center>						
+</li>
+<li>
+    
+      <ul class="collapsible" data-collapsible="accordion">
+      <li>
+          <div class="collapsible-header"><i class="material-icons">dashboard</i>DashBoard</div>
+          <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+            <li><a href="addproducts.html" class="waves-effect waves-light tertiary-color "><i class="material-icons">dashboard</i>DashBoard</a></li></ul>
+          </div>
+              
+              </li>
+          
+    <li>
+      <div class="collapsible-header"><i class="material-icons">collections</i>Inventory</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul>
+           <li><a href="inventory.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Inventory</a></li>
+          
+          
+          <li><a href="addproducts.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Add Products</a></li>
+          <li><a href="editproduct.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Edit Products</a></li>
+         
+          
+          </ul></div>
+         
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Users</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="searchuser.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Search User</a></li>
+         </ul></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Purchase</div>
+      <div class="collapsible-body" style="background-color: #1e282c; color: #fff;"><ul><li><a href="invoicegnrtor.html"
+				class="waves-effect waves-light tertiary-color "><i
+					class="material-icons">trending_up</i>Generate Invoice</a></li>
+          <li><a href="invoicegnrtor.html"
+				class="waves-effect waves-light tertiary-color "><i
+                                                                    class="material-icons">trending_up</i>Print Invoice</a></li></ul></div>
+    </li>
+  </ul>
+    
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>	
+    
+     
+  </header>
+
+<main>
+    <div class="col s12 l12 m12">
+   	 <ul class="tabs">
+        <li class="tab col s6 l6 m6"><a href="#test1">Invoice Details</a></li>
+        <li class="tab col s6 l6 m6"><a  href="#test2">Invoice Description</a></li>
+      </ul>
+
+    </div>
+    <div id="test1" class="col s12 l12 m12">
+         <form id="invoice_details">
+      <div class="row">
+        <div class="col l12 m12 s12">              
+        <div class="col l3 m3 s12">
+                    <p>Invoice Date :</p>   
+                    <div class="text-box">   
+                    <input type="text" name="invoice_date" class="datepicker">
+                    </div>     
+                    </div>
+        <div class="col l3 m3 s12">
+                    <p>Invoice Number :</p> 
+                    <div class="text-box">
+                    <input type="text" name="invoice_number" id="invoice_number">
+              </div>   
+                    </div>
+        <div class="col l3 m3 s12">
+                    <p> Purchase Order Date :</p> 
+                    <div class="text-box">
+                    <input type="text" name="po_date" class="datepicker"> 
+                  </div>           
+                    </div>
+        <div class="col l3 m3 s12">
+                    <p> Purchase Order No :</p> 
+                    <div class="text-box">
+                    <input type="text" name="order_no" id="order_no"> 
+                  </div>           
+                    </div>          
+        </div>
+      
+      </div>
+    
+        <div class="row">
+          
+        <div class="col l12 m12 s12">      
+        <div class="col l3 m3 s12">
+                    <p> Type Of Customer :</p> 
+                    <div class="text-box">  
+                      <select name="type_of_customer" id="type_of_customer">
+                          <option value = "" disabled selected></option>
+                          <option value = "Registered">Register</option>
+                          <option value = "Unregistered">Unregister</option>
+                          
+                      </select> 
+                  </div>           
+                    </div>                
+        <div class="col l3 m3 s12">
+                    <p> Payment Method :</p> 
+                    <div class="text-box">  
+                      <select name="payment_method" id="payment_method">
+                          <option value = "" disabled selected></option>
+                          <option value = "Cash">Cash</option>
+                          <option value = "Bank">Bank</option>
+                          
+                      </select> 
+                  </div>           
+                    </div>                                    
+        <div class="col l3 m3 s12">
+                    <p> GSTIN No :</p> 
+                    <div class="text-box">
+                    <input type="text" name="gstin_no" id="gstin_no"> 
+                  </div>           
+                    </div>                      
+        </div>     
+        
+        <div class="col l12 m12 s12">
+              
+        <div class="col l5 m5 s12">
+        <h6>Receiver Details</h6> 
+        <p>Billing Name :</p>
+        <div class="text-box">
+        <input type="text" name="billed_to" id="billed_to"> 
+        </div>           
+        </div>    
+        <div class="col l2 m2 s12">
+          
+        </div>                            
+        <div class="col m5 l5 s12">
+        <h6>Consignee Details</h6> 
+        <p>Shipped To :</p>
+        <div class="text-box">
+        <input type="text" name="shipped_to" id="shipped_to">
+        </div>
+        </div>                                                                                                                     
+        </div> 
+                        
+        
+        <div class="col l12 m12 s12">             
+        <div class="col l5 m5 s12">
+        <p>Billing Address :</p>
+        <div class="text-box">
+        <textarea id="billing_addr" name="billing_addr" class="materialize-textarea"></textarea>
+        </div>
+        </div>
+        <div class="col l2 m2 s12">
+        <p style="text-align: center;">
+        <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+        <label for="filled-in-box">Same as Receiver Details </label>
+        </p>	
+        </div>   
+        <div class="col l5 m5 s12">
+        <p>Shipping Address :</p>
+        <div class="text-box">
+        <textarea id="shipping_addr" name="shipping_addr" class="materialize-textarea"></textarea>
+        </div>
+        </div>                
+        </div>                                     
+                        
+                                      
+        </div>
+
+        <input type="submit" value="Submit">
+
+    </form>
+        
+        <button id="next" >click</button>
+	
+   </div>
+    <div id="test2" class="col s12 m12 l12">
+       <form id="invoice_description">
+        <div class="row">
+            
+          <div class="col l12 m12 s12"> 
+              
+                <div class="col l3 m3 s12">
+                            <p>Brand</p> 
+                            <div class="text-box">  
+                              <select name="brand" id="brand">
+                              </select> 
+                            </div>           
+                            </div>
+                <div class="col l3 m3 s12">
+                            <p>Product Type</p> 
+                            <div class="text-box">  
+                              <select name="product" id="product">
+                              </select> 
+                            </div>           
+                            </div>
+                 <div class="col l3 m3 s12">
+                            <p>Model Number</p> 
+                            <div class="text-box">  
+                              <select name="model" id="model">
+                              </select> 
+                            </div>           
+                            </div>
+               <div class="col l3 m3 s12">
+                            <p>Part Number</p> 
+                            <div class="text-box">  
+                              <select name="part_number" id="part_number">
+                              </select> 
+                            </div>           
+                            </div>
+              </div>
+          </div> 
+        <div class="row">
+          <div class="col l12 m12 s12">
+              <div class="col l2 m2 s6">
+                            <p> No of Unit :</p> 
+                            <div class="text-box">
+                            <input type="number" name="no_of_unit" id="no_of_unit"> 
+                          </div>           
+                           </div> 
+              <div class="col l2 m2 s6">
+                            <p> HSN Code :</p> 
+                            <div class="text-box">
+                            <input type="number" name="hsn_code" id="hsn_code"> 
+                          </div>           
+                           </div>
+                  <div class="col l2 m2 s6">
+                            <p>Unit Value :</p>   
+                            <div class="text-box">   
+                            <input type="number" name="unit_value" id="unit_value">
+                            </div>     
+                            </div>
+                <div class="col l2 m2 s6">
+                            <p>CGST :</p> 
+                            <div class="text-box">
+                            <input type="number" name="cgst" id="cgst">
+                             </div>   
+                            </div>
+                <div class="col l2 m2 s6">
+                            <p>SGST :</p> 
+                            <div class="text-box">
+                            <input type="number" name="sgst" id="sgst"> 
+                          </div>           
+                            </div>
+                <div class="col l2 m2 s6">
+                            <p> IGST :</p> 
+                            <div class="text-box">
+                            <input type="number" name="igst" id="igst"> 
+                          </div>           
+                           </div>  
+
+                </div>
+           
+            </div>
+     
+   </form>
+  
+  
+  
+  
+  </div>
+ 
+</main>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script src="js/invoicegnrtor.js"></script>
+
+    
+</body>
+</html>

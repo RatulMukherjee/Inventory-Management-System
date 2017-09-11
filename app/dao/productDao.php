@@ -109,14 +109,9 @@ class ProductDao extends BaseDao{
             $sql= "select distinct brand from category";
             $result = $conn->query($sql);
              $arr =  array();
-            if($result->num_rows>0)
-            {
-                while($row=$result->fetch_assoc())
-                {
-                  $arr[]=$row;
-                }
+             $arr=$this->getArray($result);
                 echo json_encode($arr);
-            }
+            
         }
         
         public function showProducts($brand){
@@ -126,14 +121,9 @@ class ProductDao extends BaseDao{
             $sql= "select distinct name from category where brand='".$brand."'";
             $result = $conn->query($sql);
              $arr =  array();
-            if($result->num_rows>0)
-            {
-                while($row=$result->fetch_assoc())
-                {
-                  $arr[]=$row;
-                }
+             $arr=$this->getArray($result);
                 echo json_encode($arr);
-            }
+            
         }
 
         public function getBrandByCid(int $cid)
@@ -343,13 +333,7 @@ class ProductDao extends BaseDao{
             {
                 echo '{"error":"True","message":"'.$conn->error.'"}';
             }
-            
-            
         }
-    
-    
-    
-    
 }
 
 ?>

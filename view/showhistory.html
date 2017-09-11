@@ -1,8 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<style>
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th{
+    padding: 15px;
+    text-align: left;
+}
+td {
+    padding: 10px;
+    text-align: left;
+}	
+	
+table#recordtable tr:nth-child(even) {
+    background-color: #eee;
+}
+table#recordtable tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#recordtable th {
+    background-color: black;
+    color: white;
+}
+</style>
+
+
 </head>
 <body>
+    <h1 id="productDetails">
+	 Product Name (Part Number)
+    </h1>
+    
+  <table id="recordtable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Vendor/Seller</th>
+            <th>Voucher Type</th>
+            <th>Units</th>
+            <th>Price/Unit</th>
+            <th>Total</th>
+            <th>Final Stock</th>
+        </tr>
+    </thead>
+  <tbody>
+
+  </tbody>
+
+</table>
+
+
+
+    
+    
+   
+
+
     
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
@@ -12,7 +72,7 @@
 
     var sPageURL = window.location.search.substring(1);
  var sURLVariables = sPageURL.split('&');
-
+        
     for (var i = 0; i < sURLVariables.length; i++)
 
     {
@@ -45,17 +105,20 @@ $(document).ready(function () {
         },
         success: function (result) 
         {
-          console.log(result);
+            // console.log(JSON.parse(result));
+            
+            var string=JSON.parse(result);
+            var str="";
+        for (var i = 0; i < string.length; i++) 
+        {
+            str+='<tr><td>'+string[i].Date+'</td><td>'+string[i].Vendor_Customer+'</td><td>'+string[i].Voucher_Type+'</td><td>'+string[i].Units+'</td><td>'+string[i].price+'</td><td>'+string[i].Total+'</td><td>'+string[i].Final_Stock+'</td></tr>';
+        }
+        $("#recordtable").append(str);
+        $("#productDetails").html(string[0].product);
+
         }
       });
-
-
 });
-  
-
-
-
-
 </script>
   
 </body>

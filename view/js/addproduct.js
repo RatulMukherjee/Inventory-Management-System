@@ -183,28 +183,28 @@ $("#addbrand").click(function(){
                 success: function(result)
                 {
                     console.log(result);
-                //   var string= JSON.parse(result);
+                  var string= JSON.parse(result);
                     
-                //     //console.log(string.error);
+                    //console.log(string.error);
                     
                     
-                //     if (string.error =="False" && string.message =="Success" )
-                //       {
-                //              Materialize.toast(string.message, 3000, 'rounded')  
-                //       }
-                //     else if (string.error == "True")
-                //         {
-                //               Materialize.toast(string.message, 3000, 'rounded')
-                //         }
-                //     else{
-                //             Materialize.toast(string.message, 3000, 'rounded')
+                    if (string.error =="False" && string.message =="Success" )
+                      {
+                             Materialize.toast(string.message, 3000, 'rounded')  
+                      }
+                    else if (string.error == "True")
+                        {
+                              Materialize.toast(string.message, 3000, 'rounded')
+                        }
+                    else{
+                            Materialize.toast(string.message, 3000, 'rounded')
                         
-                //     }
+                    }
                     
-                //     //$("#adddiv").removeClass('center');
-                //     $("#adddiv").find('#reset').remove();
-                //     var str= '<input class="btn"  type="button" name="reset" value="Reset" id="reset">';     
-                //     $("#adddiv").append(str);
+                    //$("#adddiv").removeClass('center');
+                    $("#adddiv").find('#reset').remove();
+                    var str= '<input class="btn"  type="button" name="reset" value="Reset" id="reset">';     
+                    $("#adddiv").append(str);
                 },
 				error: function(XMLHttpRequest,textStatus,errorThrown)
 				{
