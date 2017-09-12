@@ -22,9 +22,8 @@ class InvoiceBL
     {
         return $this->idao->addInvoiceDetail($item,$invoice_number);
         
-
-
     }
+
   
     }
 

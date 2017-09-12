@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     
      $('select').material_select();
      $('.datepicker').pickadate({
@@ -19,11 +20,7 @@ $(document).ready(function(){
           $('ul.tabs').tabs('select_tab', 'test1'); 
          
      });
-     $("#cgst").change(function () { 
-        var value=$(this).find("option:selected").attr('value');
-        //console.log(value);
-        //$("#sgst").val(value);
-     });
+   
 
         $("#same_as").click(function () { 
 
@@ -269,11 +266,8 @@ $("#submit").click(function () {
              
 //          }
 //      });
-
-
-
-    
 // });
+
              
     
   
