@@ -12,15 +12,16 @@ class InvoiceBL
     
     public function generateInvoiceDescription($data)
     {
-        $this->idao->generateInvoiceDescription($data);
+        return $this->idao->generateInvoiceDescription($data);
+         
 
     }
 
 
-    public function addInvoiceDetail($data)
+    public function addInvoiceDetail($item,$invoice_number)
     {
-        $message=$this->idao->addInvoiceDetail($data);
-        echo $message;
+        return $this->idao->addInvoiceDetail($item,$invoice_number);
+        
 
 
     }

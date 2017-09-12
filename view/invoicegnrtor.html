@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/table.css">
  
 
 </head>
@@ -259,8 +260,8 @@ IMS
         </div>
         <div class="col l2 m2 s12">
         <p style="text-align: center;">
-        <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-        <label for="filled-in-box">Same as Receiver Details </label>
+        <input type="checkbox" class="filled-in" id="same_as" />
+        <label for="same_as">Same as Receiver Details </label>
         </p>	
         </div>   
         <div class="col l5 m5 s12">
@@ -290,28 +291,28 @@ IMS
                 <div class="col l3 m3 s12">
                             <p>Brand</p> 
                             <div class="text-box">  
-                              <select name="brand" id="brand">
+                              <select name="brand" id="brand" required>
                               </select> 
                             </div>           
                             </div>
                 <div class="col l3 m3 s12">
                             <p>Product Type</p> 
                             <div class="text-box">  
-                              <select name="product" id="product">
+                              <select name="product" id="product" required>
                               </select> 
                             </div>           
                             </div>
                  <div class="col l3 m3 s12">
                             <p>Model Number</p> 
                             <div class="text-box">  
-                              <select name="model" id="model">
+                              <select name="model" id="model" required>
                               </select> 
                             </div>           
                             </div>
                <div class="col l3 m3 s12">
                             <p>Part Number</p> 
                             <div class="text-box">  
-                              <select name="part_number" id="part_number">
+                              <select name="part_number" id="part_number" required> 
                               </select> 
                             </div>           
                             </div>
@@ -322,36 +323,36 @@ IMS
               <div class="col l2 m2 s6">
                             <p> No of Unit :</p> 
                             <div class="text-box">
-                            <input type="number" name="no_of_unit" id="no_of_unit"> 
+                            <input type="number" name="no_of_unit" id="no_of_unit" required> 
                           </div>           
                            </div> 
               <div class="col l2 m2 s6">
                             <p> HSN Code :</p> 
                             <div class="text-box">
-                            <input type="text" name="hsn_code" id="hsn_code"> 
+                            <input type="text" name="hsn_code" id="hsn_code" required> 
                           </div>           
                            </div>
                   <div class="col l2 m2 s6">
                             <p>Unit Value :</p>   
                             <div class="text-box">   
-                            <input type="number" name="unit_value" id="unit_value">
+                            <input type="number" name="unit_value" id="unit_value" required>
                             </div>     
                             </div>
                 <div class="col l2 m2 s6">
                             <p>CGST :</p> 
                             <div class="text-box">
-                              <select name="cgst" id="cgst">
-                                <option value="0" selected>0%</option>
-                                <option value="9">9</option>
-                                <option value="14">14</option>
+                              <select name="cgst" id="cgst" required>
+                                <option value="0">0%</option>
+                                <option value="9">9%</option>
+                                <option value="14">14%</option>
                               </select> 
                              </div>   
                             </div>
                 <div class="col l2 m2 s6">
                             <p>SGST :</p> 
                             <div class="text-box">
-                              <select name="sgst" id="sgst">
-                                <option value="0" selected>0%</option>
+                              <select name="sgst" id="sgst" required>
+                                <option value="0">0%</option>
                                 <option value="9">9%</option>
                                 <option value="14">14%</option>
                               </select> 
@@ -360,8 +361,8 @@ IMS
                 <div class="col l2 m2 s6">
                             <p> IGST :</p> 
                             <div class="text-box">
-                              <select name="igst" id="igst">
-                                  <option value="0" selected>0%</option>
+                              <select name="igst" id="igst" required>
+                                  <option value="0">0%</option>
                                 <option value="18">18%</option>
                                 <option value="28">28%</option>
                               </select> 
@@ -420,6 +421,7 @@ IMS
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <script src="js/invoicegnrtor.js"></script>
+    <script src="js/init.js"></script>
 
     
 </body>

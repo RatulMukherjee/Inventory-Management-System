@@ -43,9 +43,9 @@ class InventoryFileDao extends BaseDao{
              $worksheet->setCellValue('A'.$lastRow, date("Y/m/d"))
             ->setCellValue('B'.$lastRow, $data['vendor'])
             ->setCellValue('C'.$lastRow, $type)
-            ->setCellValue('D'.$lastRow, $data['quantity'])
+            ->setCellValue('D'.$lastRow, abs($data['quantity']))
             ->setCellValue('E'.$lastRow, $data['price'])
-            ->setCellValue('F'.$lastRow, ($data['quantity']*$data['price']))
+            ->setCellValue('F'.$lastRow, abs(($data['quantity']*$data['price'])))
             ->setCellValue('G'.$lastRow, ($current_stock+$data['quantity']));
              
              $objWriter = PHPExcel_IOFactory::createWriter($excelObj, 'Excel2007');

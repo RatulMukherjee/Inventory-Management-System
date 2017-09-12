@@ -7,7 +7,7 @@ $(document).ready(function(){
         today: 'Today',
         clear: 'Clear',
         close: 'Ok',
-        closeOnSelect: false // Close upon selecting a date,
+        closeOnSelect: true // Close upon selecting a date,
       });
      $("#next").click(function(){
          
@@ -19,6 +19,31 @@ $(document).ready(function(){
           $('ul.tabs').tabs('select_tab', 'test1'); 
          
      });
+     $("#cgst").change(function () { 
+        var value=$(this).find("option:selected").attr('value');
+        //console.log(value);
+        //$("#sgst").val(value);
+     });
+
+        $("#same_as").click(function () { 
+
+            if($(this).is(':checked'))
+                {
+                    $("#shipping_addr").val($("#billing_addr").val());
+                    $("#shipped_to").val($("#billed_to").val());
+                }
+                
+            else
+                {
+                    $("#shipping_addr").val('');
+                    $("#shipped_to").val('');
+                    
+                }    
+           
+            
+        });
+
+     
       var price=100000000000000000;
 
      $.ajax({
@@ -199,7 +224,7 @@ $("#addinvoiceitem").click(function () {
     //console.log(tx_value);
     var cgst_val=tx_value*(parseInt(c_product[7].value)/100);
     var igst_val=tx_value*(parseInt(c_product[9].value)/100);
-    var sgst_val=mathtx_value*(parseInt(c_product[8].value)/100);
+    var sgst_val=tx_value*(parseInt(c_product[8].value)/100);
     var total=tx_value+igst_val+cgst_val+sgst_val;
    
     var str="<tr><td>"+(invoicearray.length+1)+"</td><td>"+c_product[0].value+"  "+c_product[2].value+" ("+c_product[3].value+")</td><td>"+c_product[5].value+"</td><td>"+c_product[4].value+"</td><td>"+c_product[6].value+"</td><td>"+tx_value+"</td><td>"+cgst_val+"</td><td>"+sgst_val+"</td><td>"+igst_val+"</td><td>"+total+"</td></tr>";
@@ -213,10 +238,14 @@ $("#addinvoiceitem").click(function () {
 });
 
 $("#submit").click(function () { 
+    var dataString=$("#invoice_details").serializeArray();
     $.ajax({
         type: "POST",
-        url: "../app/api/invoicegnrtor_api.php",
-        data: $("#invoice_details").serialize(),
+        url: "../app/api/invoiceDetails_api.php",
+        data: {
+           items: invoicearray,
+           details:dataString
+        },  
         success: function (result) {
             console.log(result);
             
@@ -225,26 +254,26 @@ $("#submit").click(function () {
 
 });
 
-$("#invoice_details").submit(function (e) { 
-    e.preventDefault();
+// $("#invoice_details").submit(function (e) { 
+//     e.preventDefault();
 
-     var dataString=$("#invoice_details").serialize();
+//      var dataString=$("#invoice_details").serialize();
 
-     $.ajax({
-         type: "POST",
-         url: "../app/api/invoicegnrtor_api.php",
-         data: dataString,
-         success: function (result) 
-         {
-             console.log(result);
+//      $.ajax({
+//          type: "POST",
+//          url: "../app/api/invoicegnrtor_api.php",
+//          data: dataString,
+//          success: function (result) 
+//          {
+//              console.log(result);
              
-         }
-     });
+//          }
+//      });
 
 
 
     
-});
+// });
              
     
   

@@ -1,0 +1,35 @@
+
+table {
+    width:100%;
+}
+table, th {
+    border: 1px solid #f1f2f1;
+    border-collapse: collapse;
+	color: #f1f2f1;
+}
+
+table, td {
+    border: 1px solid #1e282c;
+    border-collapse: collapse;
+}
+th{
+    padding: 10px 15px;
+    text-align: left;
+}
+td {
+    padding: 10px;
+    text-align: left;
+}	
+	
+table#invoicetable tr:nth-child(even) {
+    background-color: #eee;
+    color: black;
+}
+table#invoicetable tr:nth-child(odd) {
+   background-color:#fff;
+   color: black;
+}
+table#invoicetable th {
+    background-color: #1e282c;
+    color: white;
+}
