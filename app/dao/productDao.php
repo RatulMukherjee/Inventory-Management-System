@@ -348,9 +348,11 @@ class ProductDao extends BaseDao{
             
             
             $sql="Update products
-                      SET quantity='".$data['quantitymod']."',price='".$data['pricemod']."',gst='".$data['gstmod']."',model='".$data['modelmod']."' where pid='".$data['pidmod']."'";
+                      SET quantity=".$data['quantitymod'].",part_number='".$data['part_numbermod']."',product_dscp='".$data['product_dscpmod']."',price='".$data['pricemod']."',gst='".$data['gstmod']."',model='".$data['modelmod']."' where pid=".$data['pidmod'];
             
-            if ($conn->query($sql) === TRUE) 
+           
+            //echo $sql;
+                      if ($conn->query($sql) === TRUE) 
             {
               echo '{"error":"False","message":"Stock registered/updated Successfully"}';
             } 

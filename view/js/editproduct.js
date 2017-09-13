@@ -57,10 +57,10 @@ $(document).ready(function() {
 var rangeSlider = document.getElementById('slider-range');
 
 noUiSlider.create(rangeSlider, {
-	start: [ 4000 ],
+	start: [ 500000 ],
 	range: {
-		'min': [  2000 ],
-		'max': [ 50000 ]
+		'min': [  100 ],
+		'max': [ 500000 ]
 	}
 });
     var rangeSliderValueElement = document.getElementById('slider-range-value');
@@ -100,7 +100,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                 {
                     var string= JSON.parse(result);
                    
-                    //console.log(result);
+                    console.log(result);
                     
                   if (string.error == "False")
                     { 
@@ -112,8 +112,11 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                     var data = [];
 
                                     data.push(string[0][i].model);
+                                    data.push(string[0][i].part_number);
                                     data.push(string[0][i].price);
-                                    data.push(" <button data-target=\"modal1\" class=\"btn modal-trigger\">Edit</button>"); 
+                                    data.push(string[0][i].product_dscp);
+
+                                    data.push(" <button data-target=\"modal1\" pid=\""+string[0][i].pid+"\" class=\"btn modal-trigger\">Edit</button>"); 
                                     arr.push(data); 
                                 }
                         
@@ -122,7 +125,8 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
 						
 						data: arr,
 
-						buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                        
 
 						"scrollX": true,
 
@@ -136,9 +140,10 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                         
                            $('#example tbody').on( 'click', 'button', function () {
                             var index = $(this).closest('tr').index();
+                            var pid=$(this).attr('pid');
                             var table=$('#example').DataTable();
                             var data = table.row( $(this).parents('tr') ).data();
-                            //console.log(data[0]); 
+                            //console.log(pid); 
                                 $('.modal').modal({
                                       dismissible: true, // Modal can be dismissed by clicking outside of the modal
                                       opacity: .5, // Opacity of modal background
@@ -146,13 +151,25 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                       outDuration: 200, // Transition out duration
                                       startingTop: '4%', // Starting top style attribute
                                       endingTop: '10%', // Ending top style attribute
-                                      ready: function(modal, trigger){ 
+                                      ready: function(modal, trigger){
+
+                                           $("#pidmod").val(pid); 
+
                                           $("#modelmod").val(data[0]);
                                           $("#modelmod").focus();
-                                          $("#pricemod").val(data[1]);
+
+                                          $("#part_numbermod").focus();
+                                          $("#part_numbermod").val(data[1]);
+
+                                          $("#pricemod").val(data[2]);
                                           $("#pricemod").focus();
+
                                           $("#quantitymod").val(string[0][index].quantity);
                                           $("#quantitymod").focus();
+
+                                          $("#product_dscpmod").val(data[3]);
+                                          $("#product_dscpmod").focus();
+
                                           $("#gstmod").material_select(); 
                                         
                                       
@@ -192,7 +209,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                     
                     var dataString=$("#editform").serializeArray();
                     
-                    //console.log(dataString);
+                    console.log(dataString);
                         
 
                      $.ajax({
@@ -205,6 +222,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                         data: dataString,
                         success: function(result)
                         {
+                          
                             var string= JSON.parse(result);
                             
                             if (string.error== "False")

@@ -251,22 +251,7 @@ $("#submit").click(function () {
 
 });
 
-// $("#invoice_details").submit(function (e) { 
-//     e.preventDefault();
 
-//      var dataString=$("#invoice_details").serialize();
-
-//      $.ajax({
-//          type: "POST",
-//          url: "../app/api/invoicegnrtor_api.php",
-//          data: dataString,
-//          success: function (result) 
-//          {
-//              console.log(result);
-             
-//          }
-//      });
-// });
 
              
     

@@ -207,7 +207,9 @@ Admin Panel
             <thead>
                 <tr>
                     <th>Model</th>
+                    <th>Part Number</th>
                     <th>Price</th>
+                    <th>Product Description</th>
                     <th>Options</th>
                   
                     
@@ -233,22 +235,31 @@ Admin Panel
             <label for="modelmod" id="modelmodlabel">Model</label>
         </div>
         <div class="input-field col s12">
+            <input type="text" id="part_numbermod" name="part_numbermod" required>
+            <label for="part_numbermod" id="part_numbermod">Part Number</label>
+        </div>
+        <div class="input-field col s12">
             <input type="text" id="pricemod" name="pricemod" required>
             <label for="pricemod">Price</label>
         </div>
         <div class="input-field col s12">
+                <select id="gstmod" name="gstmod" required>
+                    <option value="5">5</option>
+                    <option value="12">12</option>
+                    <option value="18">18</option>
+                    <option value="28">28</option>
+                </select>
+                <label>GST</label>
+            </div>
+        <div class="input-field col s12">
             <input type="text" id="quantitymod" name="quantitymod" required>
             <label for="quantitymod">Quantity</label>
         </div>
-              <div class="input-field col s12">
-                               <select id="gstmod" name="gstmod" required>
-                              <option value="5">5</option>
-                              <option value="12">12</option>
-                              <option value="18">18</option>
-                              <option value="28">28</option>
-                            </select>
-                               <label>GST</label>
-                        </div>
+        <div class="input-field col s12">
+                <textarea id="product_dscpmod" class="materialize-textarea" name="product_dscpmod" data-length="255"></textarea>
+                <label for="product_dscpmod">Specifications</label>
+              </div>
+        
      </form>
        
     </div>
