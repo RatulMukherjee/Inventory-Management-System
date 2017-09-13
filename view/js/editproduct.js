@@ -116,7 +116,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                     data.push(string[0][i].price);
                                     data.push(string[0][i].product_dscp);
 
-                                    data.push(" <button data-target=\"modal1\" pid=\""+string[0][i].pid+"\" class=\"btn modal-trigger\">Edit</button>"); 
+                                    data.push(" <button data-target=\"modal1\" quantity=\""+string[0][i].quantity+"\" pid=\""+string[0][i].pid+"\" class=\"btn modal-trigger\">Edit</button>"); 
                                     arr.push(data); 
                                 }
                         
@@ -141,6 +141,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                            $('#example tbody').on( 'click', 'button', function () {
                             var index = $(this).closest('tr').index();
                             var pid=$(this).attr('pid');
+                            var quantity=$(this).attr('quantity');
                             var table=$('#example').DataTable();
                             var data = table.row( $(this).parents('tr') ).data();
                             //console.log(pid); 
@@ -164,7 +165,7 @@ rangeSlider.noUiSlider.on('update', function( values, handle ) {
                                           $("#pricemod").val(data[2]);
                                           $("#pricemod").focus();
 
-                                          $("#quantitymod").val(string[0][index].quantity);
+                                          $("#quantitymod").val(quantity);
                                           $("#quantitymod").focus();
 
                                           $("#product_dscpmod").val(data[3]);
