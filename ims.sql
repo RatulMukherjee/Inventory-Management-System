@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2017 at 04:08 PM
+-- Generation Time: Sep 13, 2017 at 07:30 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -45,11 +45,7 @@ INSERT INTO `category` (`cid`, `name`, `type`, `brand`) VALUES
 (9, 'Monitor', 'h', 'Samsung'),
 (11, 'Monitor', 'h', 'HP'),
 (13, 'Laptop', 'h', 'HP'),
-(14, 'Printer', 'h', 'HP'),
-(15, 'Laptop', 'h', 'Samsung'),
-(16, 'Printer', 'h', 'Samsung'),
-(17, 'Photoshop', 's', 'Adobe'),
-(18, 'After Effects', 's', 'Adobe');
+(14, 'Printer', 'h', 'HP');
 
 -- --------------------------------------------------------
 
@@ -76,6 +72,8 @@ CREATE TABLE `invoice_description` (
   `invoice_number` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `product` varchar(255) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `part_number` varchar(255) NOT NULL DEFAULT 'NA',
   `hsn_code` varchar(255) DEFAULT NULL,
   `no_of_units` int(11) NOT NULL,
   `unit_value` int(11) NOT NULL,
@@ -109,7 +107,8 @@ CREATE TABLE `invoice_details` (
 --
 
 INSERT INTO `invoice_details` (`invoice_number`, `type_of_customer`, `order_no`, `billed_to`, `billing_addr`, `shipped_to`, `shipping_addr`, `gstin_no`, `po_date`, `invoice_date`, `payment_method`) VALUES
-('STPL/17-18/08-59', 'Registered', 'O-123', 'Supreme Industries Pvt. Ltd.', 'Sarat Bose Road Kol-700020', 'Supreme Industries Pvt. Ltd', 'Sarat Bose Road Kol-700020', '19AAACT1344F1ZL', '2017-08-26', '2017-08-28', 'Cash');
+('STPL/17-18/08-59', 'Registered', 'O-123', 'Supreme Industries Pvt. Ltd.', 'Sarat Bose Road Kol-700020', 'Supreme Industries Pvt. Ltd', 'Sarat Bose Road Kol-700020', '19AAACT1344F1ZL', '2017-08-26', '2017-08-28', 'Cash'),
+('STPL/17-18/08-60', 'Registered', 'O-124', 'Supreme Industries Pvt. Ltd.', 'Sarat Bose Road Kol-700020', 'Supreme Industries Pvt. Ltd.', 'Sarat Bose Road Kol-700020', '19AAACT1344F1ZL', '2017-08-26', '2017-08-27', 'Cash');
 
 -- --------------------------------------------------------
 
@@ -145,7 +144,8 @@ INSERT INTO `products` (`pid`, `cid`, `model`, `part_number`, `quantity`, `price
 (12, 13, 'HP Pavilion15 AC 117TU (N8M13PA#ACJ) Intel CDC @1.6Ghz - (4 GB DDR3/500 GB HDD/Free DOS) Notebook', 'NA', 10, 22999, 18, 'No details available'),
 (13, 14, 'HP M1005 Multifunction Laserjet PrinterLaptop Sparkling Black', 'NA', 10, 14999, 18, 'No details available'),
 (14, 14, 'HP DeskJet Ink Advantage 2135 All-in-One Printer (White) ', 'CVB134', 10, 4074, 18, 'No details available'),
-(22, 13, 'Elitebook x360 1030 G2', '1UX16PA#ACJ', 10, 14528, 12, 'i7-7600U, 16GB DDR4 RAM, 512GB PCIe SSD, Win 10 Pro, 13.3\" FHD IPS Touchscreen\r\nDisplay with HP Sureview, No ODD, 3 Year Onsite Warranty with 1 year ADP, With Bag');
+(22, 13, 'Elitebook x360 1030 G2', '1UX16PA#ACJ', 108, 100000, 18, 'i7-7600U, 16GB DDR4 RAM, 512GB PCIe SSD, Win 10 Pro, 13.3\" FHD IPS Touchscreen\r\nDisplay with HP Sureview, No ODD, 3 Year Onsite Warranty with 1 year ADP, With Bag'),
+(25, 13, 'Elitebook x360 1030 G2', '1UX15PA#ACJ', 10, 119190, 18, '6th Gen i7-7600U, 8GB DDR4 RAM, 256GB PCIe SSD, Win 10 Pro, 13.3\" FHD IPS Touchscreen Display with HP Sureview, No ODD, 3 Year Onsite Warranty with 1 year ADP, With Bag');
 
 -- --------------------------------------------------------
 
@@ -224,7 +224,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `companyinfo`
 --
@@ -239,7 +239,7 @@ ALTER TABLE `invoice_description`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `users`
 --
